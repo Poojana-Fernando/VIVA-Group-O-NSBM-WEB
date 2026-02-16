@@ -1,39 +1,83 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>E-Channeling System | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Channeling | Home</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f7f6; }
-        .hero { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }
-        .container { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-        .card { background: #fff; border: 1px solid #eee; padding: 30px; width: 280px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .btn { display: inline-block; padding: 15px 30px; background-color: #007bff; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background-color: #0056b3; transform: translateY(-2px); }
-        .btn-doctor { background-color: #28a745; }
-        .btn-doctor:hover { background-color: #218838; }
-        h1 { color: #2c3e50; }
-        p { color: #7f8c8d; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; line-height: 1.6; }
+        .navbar { background: #fff; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); sticky: top; }
+        .logo { font-size: 24px; font-weight: bold; color: #007bff; text-decoration: none; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: #666; font-weight: 500; }
+        
+        .hero { padding: 80px 20px; text-align: center; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); color: white; }
+        .hero h1 { font-size: 42px; margin-bottom: 10px; }
+        
+        .cta-section { display: flex; justify-content: center; gap: 20px; margin-top: -40px; padding: 0 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        
+        .btn { display: inline-block; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-book { background: #007bff; color: white; }
+        .btn-doc { background: #28a745; color: white; }
+        
+        .section { padding: 60px 50px; max-width: 1000px; margin: auto; }
+        footer { background: #333; color: white; text-align: center; padding: 30px; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Welcome to E-Channeling</h1>
-        <p>Providing seamless healthcare connections for you and your family.</p>
 
-        <div class="container">
-            <div class="card">
-                <h3>Patients</h3>
-                <p>No account needed. Just fill in your details and pick your doctor.</p>
-                <a href="book_now.php" class="btn">Book an Appointment</a>
-            </div>
-
-            <div class="card">
-                <h3>Doctors</h3>
-                <p>Access your private dashboard to manage patient sessions.</p>
-                <a href="doctor_login.html" class="btn btn-doctor">Doctor Login</a>
-            </div>
-        </div>
+<div class="navbar">
+    <a href="index.php" class="logo">E-Channeling</a>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <?php if(isset($_SESSION['doctor_id'])): ?>
+            <a href="dashboard.php" style="color: #28a745; border: 1px solid #28a745; padding: 5px 15px; border-radius: 20px;">Dashboard</a>
+        <?php else: ?>
+            <a href="doctor_login.html">Doctor Login</a>
+        <?php endif; ?>
     </div>
+</div>
+
+<div class="hero">
+    <h1>Your Health, Simplified.</h1>
+    <p>Connecting patients with top medical specialists instantly.</p>
+</div>
+
+<div class="cta-section">
+    <div class="card">
+        <h3>Need a Doctor?</h3>
+        <p>Quick booking for all patients. No registration required.</p>
+        <a href="book_now.php" class="btn btn-book">Book Now</a>
+    </div>
+    
+    <div class="card">
+        <h3>Doctor Portal</h3>
+        <p>Manage your upcoming appointments and patient list.</p>
+        <?php if(isset($_SESSION['doctor_id'])): ?>
+            <a href="dashboard.php" class="btn btn-doc">Go to Dashboard</a>
+        <?php else: ?>
+            <a href="doctor_login.html" class="btn btn-doc">Doctor Login</a>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div id="about" class="section">
+    <h2>About Us</h2>
+    <p>E-Channeling is a modern healthcare platform built to eliminate long queues and provide instant access to medical consultants. Our system is designed for speed and reliability, ensuring that getting the care you need is as easy as clicking a button.</p>
+</div>
+
+<div id="contact" class="section" style="background: #f9f9f9; border-radius: 20px;">
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> support@e-channeling.lk</p>
+    <p><strong>Phone:</strong> +94 11 234 5678</p>
+    <p><strong>Location:</strong> Colombo, Sri Lanka</p>
+</div>
+
+<footer>
+    <p>&copy; 2026 E-Channeling System. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
