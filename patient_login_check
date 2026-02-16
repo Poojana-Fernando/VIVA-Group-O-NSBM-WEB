@@ -1,0 +1,23 @@
+<?php
+session_start();
+include 'database.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['pemail'];
+
+    $stmt = $conn->prepare("SELECT pid, pname FROM Patients WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+        $_SESSION['patient_id'] = $row['pid'];
+        $_SESSION['patient_name'] = $row['pname'];
+        header("Location: booking_appointment.php");
+        exit();
+    } else {
+        echo "Email not found. Please <a href='patient_register.html'>register first</a>.";
+    }
+}
+?>
