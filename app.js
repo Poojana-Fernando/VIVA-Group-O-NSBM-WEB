@@ -33,13 +33,46 @@ const slides = [
   { id: 2, title: 'Compassionate Care', subtitle: 'Healing with a touch of humanity.', description: 'Our dedicated team of professionals ensures that every patient receives personalized care and attention.', cta: 'Find a Service', image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1920&auto=format&fit=crop' },
   { id: 3, title: 'Expert Specialists', subtitle: 'Trust your health with the best minds.', description: 'Access the most extensive network of medical specialists in Sri Lanka, covering over 50 specialties.', cta: 'Find a Doctor', image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1920&auto=format&fit=crop' },
 ];
-const mockDoctors = [
-  { id: 1, name: 'Dr. Rohan Perera', specialty: 'Cardiology', hospital: 'Asiri Central', image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b1cb?q=80&w=400&auto=format&fit=crop' },
-  { id: 2, name: 'Dr. Sarah Silva', specialty: 'Neurology', hospital: 'Asiri Surgical', image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400&auto=format&fit=crop' },
-  { id: 3, name: 'Dr. Nilanthi Appuhamy', specialty: 'Oncology', hospital: 'Asiri AOI Cancer Centre', image: 'https://images.unsplash.com/photo-1559839734-2b71f1536783?q=80&w=400&auto=format&fit=crop' },
-  { id: 4, name: 'Dr. James White', specialty: 'Orthopedics', hospital: 'Asiri Medical', image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=400&auto=format&fit=crop' },
-];
-const specialties = ['Cardiology', 'Oncology', 'Neurology', 'Orthopedics', 'Pediatrics', 'Nephrology', 'Dermatology', 'General Surgery'];
+/* doctorsData is loaded from the MySQL database via the API */
+let doctorsData = [];
+let doctorsLoaded = false;
+const API_BASE = 'http://localhost:3000/api';
+
+async function fetchDoctors() {
+  try {
+    const res = await fetch(`${API_BASE}/doctors`);
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    // Map DB columns to frontend-friendly names
+    doctorsData = data.map(d => ({
+      id: d.did,
+      name: d.dname,
+      specialty: d.specialization,
+      fee: d.fee,
+      presentDays: d.present_days,
+      hospital: 'Asiri Health',
+      image: `https://ui-avatars.com/api/?name=${encodeURIComponent(d.dname)}&size=400&background=8E0E2F&color=fff&bold=true`
+    }));
+    doctorsLoaded = true;
+    return doctorsData;
+  } catch (err) {
+    console.error('Failed to load doctors:', err);
+    doctorsLoaded = false;
+    return [];
+  }
+}
+let specialties = ['Cardiology', 'Oncology', 'Neurology', 'Orthopedics', 'Pediatrics', 'Nephrology', 'Dermatology', 'General Surgery'];
+
+// Also fetch specializations from DB to keep the filter dropdown up-to-date
+async function fetchSpecializations() {
+  try {
+    const res = await fetch(`${API_BASE}/specializations`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.length > 0) specialties = data;
+    }
+  } catch (e) { /* use defaults */ }
+}
 const categories = ['All', 'Diagnostics', 'Critical Care', 'Preventive', 'Patient Care', 'Rehabilitation'];
 const faqs = [
   { q: 'How do I book an appointment for this service?', a: 'You can book an appointment online via our "Book Appointment" page or by calling our hotline at 1313.' },
@@ -519,18 +552,38 @@ function renderDoctorSearch() {
         </select>
       </div>
       <div class="flex flex-col gap-4" id="doctor-list">
-        ${mockDoctors.map(d => renderDoctorCard(d)).join('')}
+        <div style="text-align:center;padding:3rem;color:var(--gray-500)">Loading doctors...</div>
       </div>
     </div>
   `;
 }
+
+/* Load doctors from the API after the page renders */
+async function loadDoctorsPage() {
+  await Promise.all([fetchDoctors(), fetchSpecializations()]);
+  const list = $('#doctor-list');
+  if (!list) return;
+  if (!doctorsLoaded || doctorsData.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">${ICONS.alertTriangle}</div><h3 style="font-size:1.25rem;font-weight:700;color:var(--gray-700)">Could not load doctors</h3><p style="color:var(--gray-500);margin-top:.5rem">Make sure the API server is running on port 3000.</p></div>`;
+    return;
+  }
+  list.innerHTML = doctorsData.map(d => renderDoctorCard(d)).join('');
+  // Update specialty dropdown with DB values
+  const select = $('#specialty-filter');
+  if (select) {
+    select.innerHTML = `<option value="">All Specialties</option>` + specialties.map(s => `<option value="${s}">${s}</option>`).join('');
+  }
+}
 function renderDoctorCard(d) {
+  const feeText = d.fee ? `<span style="color:var(--green-600);font-weight:600;font-size:.8125rem">Rs. ${Number(d.fee).toLocaleString()}</span>` : '';
+  const daysText = d.presentDays ? `<p style="color:var(--gray-400);font-size:.75rem;margin-top:.25rem">${d.presentDays}</p>` : '';
   return `<div class="doctor-card" onclick="selectDoctor(${d.id})" style="cursor:pointer">
     <div class="doctor-avatar"><img src="${d.image}" alt="${d.name}"></div>
     <div style="flex:1">
       <h3>${d.name}</h3>
       <p style="color:var(--brand-primary);font-weight:600;font-size:.875rem;margin-bottom:.25rem">${d.specialty}</p>
-      <p style="color:var(--gray-500);font-size:.8125rem">${d.hospital}</p>
+      ${feeText}
+      ${daysText}
     </div>
     <div class="btn-outline" style="padding:.5rem 1rem;font-size:.75rem">Select</div>
   </div>`;
@@ -538,14 +591,14 @@ function renderDoctorCard(d) {
 function filterDoctors() {
   const q = ($('#doctor-search')?.value || '').toLowerCase();
   const spec = $('#specialty-filter')?.value || '';
-  const filtered = mockDoctors.filter(d => {
+  const filtered = doctorsData.filter(d => {
     return d.name.toLowerCase().includes(q) && (!spec || d.specialty === spec);
   });
   const list = $('#doctor-list');
   if (list) list.innerHTML = filtered.length ? filtered.map(d => renderDoctorCard(d)).join('') : `<div class="empty-state"><div class="empty-icon">${ICONS.searchLg}</div><h3 style="font-size:1.25rem;font-weight:700;color:var(--gray-700)">No doctors found</h3></div>`;
 }
 function selectDoctor(id) {
-  selectedDoctor = mockDoctors.find(d => d.id === id);
+  selectedDoctor = doctorsData.find(d => d.id === id);
   appointmentStep = 2;
   const c = $('#appointment-container');
   if (c) { c.innerHTML = renderAppointmentStep(); observeAnimations(); }
@@ -559,46 +612,88 @@ function renderBookingForm() {
         <div><h3 style="font-weight:700;font-size:1.25rem">${d.name}</h3><p style="color:rgba(255,255,255,.7);font-size:.875rem">${d.specialty} • ${d.hospital}</p></div>
       </div>
       <div style="padding:2rem">
-        <form onsubmit="confirmAppointment(event)">
+        <form id="booking-form" onsubmit="confirmAppointment(event)">
           <div class="grid grid-1 md-grid-2 gap-4" style="margin-bottom:1rem">
-            <div><label class="form-label">Full Name *</label><input class="form-input" required placeholder="Your full name"></div>
-            <div><label class="form-label">Phone *</label><input class="form-input" type="tel" required placeholder="+94 XX XXX XXXX"></div>
+            <div><label class="form-label">Full Name *</label><input id="book-name" class="form-input" required placeholder="Your full name"></div>
+            <div><label class="form-label">Phone *</label><input id="book-phone" class="form-input" type="tel" required placeholder="+94 XX XXX XXXX"></div>
           </div>
           <div class="grid grid-1 md-grid-2 gap-4" style="margin-bottom:1rem">
-            <div><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"></div>
-            <div><label class="form-label">NIC / Passport *</label><input class="form-input" required placeholder="National ID or Passport"></div>
+            <div><label class="form-label">Email *</label><input id="book-email" class="form-input" type="email" required placeholder="you@example.com"></div>
+            <div><label class="form-label">NIC / Passport *</label><input id="book-nic" class="form-input" required placeholder="National ID or Passport"></div>
           </div>
           <div style="margin-bottom:1rem">
             <label class="form-label">Preferred Date *</label>
-            <div class="date-box">${ICONS.calendarMd}<input type="date" class="form-input" required style="border:none;padding:.5rem;box-shadow:none" min="${new Date().toISOString().split('T')[0]}"></div>
+            <div class="date-box">${ICONS.calendarMd}<input id="book-date" type="date" class="form-input" required style="border:none;padding:.5rem;box-shadow:none" min="${new Date().toISOString().split('T')[0]}"></div>
           </div>
-          <div style="margin-bottom:1.5rem"><label class="form-label">Notes (Optional)</label><textarea class="form-input" rows="3" placeholder="Any special requirements..." style="resize:vertical"></textarea></div>
+          <div style="margin-bottom:1.5rem"><label class="form-label">Notes (Optional)</label><textarea id="book-notes" class="form-input" rows="3" placeholder="Any special requirements..." style="resize:vertical"></textarea></div>
+          <div id="booking-error" style="display:none;color:#e53e3e;background:#fff5f5;padding:.75rem 1rem;border-radius:var(--radius-xl);margin-bottom:1rem;font-size:.875rem"></div>
           <div class="flex gap-4">
-            <button type="button" class="btn-outline" onclick="appointmentStep=1;$('#appointment-container').innerHTML=renderAppointmentStep()">Back</button>
-            <button type="submit" class="btn-primary" style="flex:1">Confirm Booking ${ICONS.arrowRight}</button>
+            <button type="button" class="btn-outline" onclick="appointmentStep=1;$('#appointment-container').innerHTML=renderAppointmentStep();setTimeout(loadDoctorsPage,50)">Back</button>
+            <button type="submit" id="book-submit-btn" class="btn-primary" style="flex:1">Confirm Booking ${ICONS.arrowRight}</button>
           </div>
         </form>
       </div>
     </div>
   </div>`;
 }
-function confirmAppointment(e) {
-  e.preventDefault(); appointmentStep = 3;
-  const c = $('#appointment-container');
-  if (c) { c.innerHTML = renderAppointmentStep(); }
+let lastBookingRef = '';
+async function confirmAppointment(e) {
+  e.preventDefault();
+  const errBox = $('#booking-error');
+  const submitBtn = $('#book-submit-btn');
+
+  // Collect form values
+  const patientName = $('#book-name').value.trim();
+  const phone = $('#book-phone').value.trim();
+  const email = $('#book-email').value.trim();
+  const appointDate = $('#book-date').value;
+  const doctorId = selectedDoctor.id;
+
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Booking...';
+  if (errBox) errBox.style.display = 'none';
+
+  try {
+    const res = await fetch(`${API_BASE}/appointments`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ patientName, email, phone, doctorId, appointDate })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || 'Failed to book appointment');
+    }
+
+    // Success — go to confirmation page
+    lastBookingRef = data.reference;
+    appointmentStep = 3;
+    const c = $('#appointment-container');
+    if (c) { c.innerHTML = renderAppointmentStep(); }
+  } catch (err) {
+    // Show error
+    if (errBox) {
+      errBox.textContent = err.message;
+      errBox.style.display = 'block';
+    }
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = `Confirm Booking ${ICONS.arrowRight}`;
+  }
 }
 function renderConfirmation() {
   const d = selectedDoctor;
+  const ref = lastBookingRef || `APT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
   return `<div style="max-width:36rem;margin:0 auto">
     <div class="confirm-card">
       <div style="color:var(--green-600);margin-bottom:1.5rem">${ICONS.checkCircleLg}</div>
       <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:.5rem">Appointment Confirmed!</h2>
-      <p style="color:var(--gray-500);margin-bottom:2rem">Your appointment has been successfully scheduled.</p>
+      <p style="color:var(--gray-500);margin-bottom:2rem">Your appointment has been successfully saved to the database.</p>
       <div style="background:var(--gray-50);padding:1.5rem;border-radius:var(--radius-2xl);text-align:left;margin-bottom:2rem">
         <div class="confirm-detail"><span style="color:var(--gray-500)">Doctor</span><span style="font-weight:600">${d.name}</span></div>
         <div class="confirm-detail"><span style="color:var(--gray-500)">Specialty</span><span style="font-weight:600">${d.specialty}</span></div>
         <div class="confirm-detail"><span style="color:var(--gray-500)">Hospital</span><span style="font-weight:600">${d.hospital}</span></div>
-        <div class="confirm-detail" style="border-bottom:none"><span style="color:var(--gray-500)">Reference</span><span style="font-weight:600;color:var(--brand-primary)">#APT-${Math.random().toString(36).substring(2, 8).toUpperCase()}</span></div>
+        <div class="confirm-detail" style="border-bottom:none"><span style="color:var(--gray-500)">Reference</span><span style="font-weight:600;color:var(--brand-primary)">#${ref}</span></div>
       </div>
       <div class="flex gap-4 justify-center">
         <a href="#/" class="btn-outline">Back to Home</a>
@@ -714,6 +809,7 @@ function route() {
     app.innerHTML = renderContactPage();
   } else if (path === '/doctor-appointment') {
     app.innerHTML = renderDoctorAppointmentPage();
+    setTimeout(loadDoctorsPage, 50);
   } else if (path === '/download-lab-reports') {
     app.innerHTML = renderLabReportsPage();
   } else {
