@@ -36,11 +36,11 @@ const slides = [
 /* doctorsData is loaded from the MySQL database via the API */
 let doctorsData = [];
 let doctorsLoaded = false;
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = 'api';
 
 async function fetchDoctors() {
   try {
-    const res = await fetch(`${API_BASE}/doctors`);
+    const res = await fetch(`${API_BASE}/doctors.php`);
     if (!res.ok) throw new Error('API error');
     const data = await res.json();
     // Map DB columns to frontend-friendly names
@@ -66,7 +66,7 @@ let specialties = ['Cardiology', 'Oncology', 'Neurology', 'Orthopedics', 'Pediat
 // Also fetch specializations from DB to keep the filter dropdown up-to-date
 async function fetchSpecializations() {
   try {
-    const res = await fetch(`${API_BASE}/specializations`);
+    const res = await fetch(`${API_BASE}/specializations.php`);
     if (res.ok) {
       const data = await res.json();
       if (data.length > 0) specialties = data;
@@ -564,7 +564,7 @@ async function loadDoctorsPage() {
   const list = $('#doctor-list');
   if (!list) return;
   if (!doctorsLoaded || doctorsData.length === 0) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-icon">${ICONS.alertTriangle}</div><h3 style="font-size:1.25rem;font-weight:700;color:var(--gray-700)">Could not load doctors</h3><p style="color:var(--gray-500);margin-top:.5rem">Make sure the API server is running on port 3000.</p></div>`;
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">${ICONS.alertTriangle}</div><h3 style="font-size:1.25rem;font-weight:700;color:var(--gray-700)">Could not load doctors</h3><p style="color:var(--gray-500);margin-top:.5rem">Make sure PHP and MySQL are running.</p></div>`;
     return;
   }
   list.innerHTML = doctorsData.map(d => renderDoctorCard(d)).join('');
@@ -655,7 +655,7 @@ async function confirmAppointment(e) {
   if (errBox) errBox.style.display = 'none';
 
   try {
-    const res = await fetch(`${API_BASE}/appointments`, {
+    const res = await fetch(`${API_BASE}/appointments.php`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ patientName, email, phone, doctorId, appointDate })
