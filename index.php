@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Channeling | Home</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; line-height: 1.6; }
-        .navbar { background: #fff; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); sticky: top; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; line-height: 1.6; background-color: #f8f9fa; }
+        .navbar { background: #fff; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: bold; color: #007bff; text-decoration: none; }
         .nav-links a { margin-left: 20px; text-decoration: none; color: #666; font-weight: 500; }
         
@@ -17,9 +17,10 @@
         .cta-section { display: flex; justify-content: center; gap: 20px; margin-top: -40px; padding: 0 20px; }
         .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 300px; text-align: center; }
         
-        .btn { display: inline-block; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn { display: inline-block; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; }
         .btn-book { background: #007bff; color: white; }
         .btn-doc { background: #28a745; color: white; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
         
         .section { padding: 60px 50px; max-width: 1000px; margin: auto; }
         footer { background: #333; color: white; text-align: center; padding: 30px; margin-top: 50px; }
@@ -33,7 +34,7 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <?php if(isset($_SESSION['doctor_id'])): ?>
-            <a href="dashboard.php" style="color: #28a745; border: 1px solid #28a745; padding: 5px 15px; border-radius: 20px;">Dashboard</a>
+            <a href="doctor_dashboard.php" style="color: #28a745; font-weight: bold;">Dashboard</a>
         <?php else: ?>
             <a href="doctor_login.html">Doctor Login</a>
         <?php endif; ?>
@@ -56,7 +57,7 @@
         <h3>Doctor Portal</h3>
         <p>Manage your upcoming appointments and patient list.</p>
         <?php if(isset($_SESSION['doctor_id'])): ?>
-            <a href="dashboard.php" class="btn btn-doc">Go to Dashboard</a>
+            <a href="doctor_dashboard.php" class="btn btn-doc">Go to Dashboard</a>
         <?php else: ?>
             <a href="doctor_login.html" class="btn btn-doc">Doctor Login</a>
         <?php endif; ?>
@@ -65,10 +66,10 @@
 
 <div id="about" class="section">
     <h2>About Us</h2>
-    <p>E-Channeling is a modern healthcare platform built to eliminate long queues and provide instant access to medical consultants. Our system is designed for speed and reliability, ensuring that getting the care you need is as easy as clicking a button.</p>
+    <p>E-Channeling is a modern healthcare platform built to eliminate long queues. Whether you are a student like me or a busy professional, our system ensures getting care is as easy as a single click.</p>
 </div>
 
-<div id="contact" class="section" style="background: #f9f9f9; border-radius: 20px;">
+<div id="contact" class="section" style="background: #fff; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
     <h2>Contact Us</h2>
     <p><strong>Email:</strong> support@e-channeling.lk</p>
     <p><strong>Phone:</strong> +94 11 234 5678</p>
