@@ -5,306 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>E-Channeling | Home</title>
-
-  <style>
-    :root{
-      --green:#22c55e;
-      --green-dark:#16a34a;
-      --blue:#2563eb;
-      --blue-dark:#1d4ed8;
-      --text:#0f172a;
-      --muted:#64748b;
-      --bg:#f6f8fb;
-      --card:#ffffff;
-      --border:rgba(15,23,42,.10);
-      --shadow: 0 12px 30px rgba(15,23,42,.10);
-      --shadow-soft: 0 8px 18px rgba(15,23,42,.08);
-      --radius:16px;
-    }
-
-    *{ box-sizing:border-box; }
-
-    body{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      margin:0;
-      color:var(--text);
-      line-height:1.6;
-      background:var(--bg);
-    }
-
-    
-    .navbar{
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-
-      border-bottom: 1px solid var(--border);
-      padding: 14px 28px;
-
-      display:flex;
-      align-items:center;
-      gap:16px;
-    }
-
-    
-    .nsbm-logo{
-      display:flex;
-      align-items:center;
-    }
-    .nsbm-logo img{
-      height: 60px;     
-      width: auto;
-      display:block;
-      object-fit: contain;
-    }
-
-    
-    .nav-actions{
-      display:flex;
-      gap:12px;
-    }
-
-    
-    .nav-links{
-      margin-left:auto;
-      display:flex;
-      gap:18px;
-    }
-    .nav-links a{
-      text-decoration:none;
-      color: var(--muted);
-      font-weight:600;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: .2s;
-    }
-    .nav-links a:hover{
-      color: var(--text);
-      background: rgba(37,99,235,.08);
-    }
-
-    
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-
-      padding: 10px 16px;
-      border-radius: 999px;
-      text-decoration:none;
-      font-weight:700;
-      border: 1px solid transparent;
-      transition: .2s ease;
-      cursor:pointer;
-      box-shadow: 0 6px 14px rgba(15,23,42,.08);
-    }
-
-    .btn-book{
-      background: var(--blue);
-      color: #fff;
-    }
-    .btn-book:hover{
-      background: var(--blue-dark);
-      transform: translateY(-1px);
-    }
-
-    .btn-doc{
-      background: var(--green);
-      color:#fff;
-    }
-    .btn-doc:hover{
-      background: var(--green-dark);
-      transform: translateY(-1px);
-    }
-
-    
-    .nav-btn{ padding: 9px 14px; font-size: 14px; }
-
-    
-    .hero{
-      padding: 92px 20px 110px;
-      text-align:center;
-      color:white;
-      background:
-        radial-gradient(900px 380px at 50% 30%, rgba(255,255,255,.18), transparent 60%),
-        linear-gradient(135deg, #47ce3a 0%, #47ce3a 45%, #47ce3a 100%);
-    }
-    .hero h1{
-      font-size: clamp(34px, 4vw, 54px);
-      margin:0 0 10px;
-      letter-spacing: -0.02em;
-    }
-    .hero p{
-      margin:0;
-      color: rgba(255,255,255,.9);
-      font-size: 16px;
-    }
-
-    
-    .cta-section{
-      display:flex;
-      justify-content:center;
-      gap:22px;
-      margin-top: -55px;
-      padding: 0 20px;
-      flex-wrap: wrap;
-    }
-
-    .card{
-      background: rgba(255,255,255,.90);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-
-      border: 1px solid var(--border);
-      padding: 28px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      width: min(360px, 92vw);
-      text-align:center;
-      transition: .2s ease;
-    }
-    .card:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(15,23,42,.14);
-    }
-    .card h3{
-      margin: 4px 0 8px;
-      font-size: 20px;
-    }
-    .card p{
-      margin: 0 0 18px;
-      color: var(--muted);
-    }
-
-    
-    .section{
-      padding: 70px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section h2{
-      margin:0 0 10px;
-      font-size: 28px;
-      letter-spacing: -0.01em;
-    }
-    .section p{ color: var(--muted); }
-
-    #contact.section{
-      background: #fff;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      padding: 50px 20px;
-    }
-
-    
-    footer{
-      background: #0b1220;
-      color: rgba(255,255,255,.85);
-      text-align:center;
-      padding: 28px 16px;
-      margin-top: 50px;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-
-    
-    @media (max-width: 720px){
-      .navbar{ padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
-      .nav-actions{ width: 100%; }
-      .nav-links{ margin-left: 0; width: 100%; justify-content: flex-start; }
-    }
-    
-    .slider-wrap{
-    max-width: 1500px;
-    margin: -60px auto 0;
-    padding: 0 20px;
-    }
-
-    .slider{
-    position: relative;
-    overflow: hidden;
-    border-radius: 22px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    background: #fff;
-    }
-
-    .slides{
-    display: flex;
-    transition: transform .9s ease;
-    will-change: transform;
-    }
-
-    .slide{
-    flex: 0 0 100%;
-    width: 100%;
-    height: 600px;
-    background: #e5e7eb;
-    }
-
-    .slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    }
-
-    
-    .slider-btn{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.8);
-    box-shadow: 0 10px 20px rgba(15,23,42,.15);
-    cursor: pointer;
-    font-size: 18px;
-    display: grid;
-    place-items: center;
-    transition: .2s;
-    }
-    .slider-btn:hover{ background: rgba(255,255,255,.95); }
-    .slider-btn.prev{ left: 12px; }
-    .slider-btn.next{ right: 12px; }
-
-
-    .dots{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    }
-    .dot{
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.8);
-    background: rgba(255,255,255,.45);
-    cursor: pointer;
-    transition: .2s;
-    }
-    .dot.active{
-    background: rgba(255,255,255,.95);
-    transform: scale(1.15);
-    }
-
-    
-    @media (max-width: 720px){
-    .slide{ height: 240px; }
-    .slider-wrap{ margin-top: -40px; }
-    }
-
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
@@ -325,16 +26,51 @@
         <?php if(isset($_SESSION['doctor_id'])): ?>
         <a href="doctor_dashboard.php" class="btn btn-doc nav-btn">Dashboard</a>
         <?php else: ?>
-        <a href="doctor_login.html" class="btn btn-doc nav-btn">Doctor Login</a>
+        <a href="doctor_login.html" class="btn btn-doc nav-btn">Doctor Portal</a>
         <?php endif; ?>
     </div>
     </div>
 
 
-  <div class="hero">
-    <h1>BETTER CARE. BETTER LIFE</h1>
-    <p>Stay healthy, focused, and confident throughout your university life.</p>
+  <section class="hero">
+  <div class="hero-panel">
+    <p class="hero-small">Welcome to</p>
+    <h1 class="hero-title">NSBM HEALTHCARE</h1>
+    <p class="hero-desc">YOUR HEALTH. YOUR STUDIES. OUR PRIORITY</p>
+
+    <div class="hero-info">
+      <div class="info-row">
+        <div class="info-icon">
+         
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-5.2 7-11a7 7 0 0 0-14 0c0 5.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.2"/>
+          </svg>
+        </div>
+        <div class="info-text">
+          Homagama, Sri Lanka
+          <span class="info-sub">NSBM Green University</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">
+        
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L9.9 10.6a16 16 0 0 0 3.5 3.5l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/>
+          </svg>
+        </div>
+        <div class="info-text">
+          +94 11 234 5678
+          <span class="info-sub">nsbmhealthcare@nsbm.lk</span>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
+
 
   <div class="slider-wrap">
   <div class="slider" id="slider">
@@ -351,6 +87,108 @@
     <div class="dots" id="dots"></div>
   </div>
 </div>
+<section class="services-wrap">
+  <h2 class="services-title">Our areas of expertise</h2>
+
+  <div class="services-grid">
+
+    <a class ="service-link" href="servicesPages/heart.html">
+    <div class="service-tile active">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+        </svg>
+      </div>
+      <div class="service-name">Heart Centre</div>
+    </div>
+    </a>
+    
+    <a class ="service-link" href="servicesPages/brain.html">
+    <div class="service-tile">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <path d="M8 4a4 4 0 0 0-4 4v2a3 3 0 0 0 2 2.8V16a4 4 0 0 0 4 4"/>
+          <path d="M16 4a4 4 0 0 1 4 4v2a3 3 0 0 1-2 2.8V16a4 4 0 0 1-4 4"/>
+          <path d="M9 8h1M14 8h1M9 12h1M14 12h1"/>
+        </svg>
+      </div>
+      <div class="service-name">Brain &amp; Spine</div>
+    </div>
+    </a>
+
+    <a class ="service-link" href="servicesPages/kidney.html">
+    <div class="service-tile">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <path d="M7 3c3 0 5 3 5 7s-2 8-5 8-5-2-5-6 2-9 5-9z"/>
+          <path d="M17 3c3 0 5 3 5 7s-2 8-5 8-5-2-5-6 2-9 5-9z"/>
+          <path d="M12 12v9"/>
+        </svg>
+      </div>
+      <div class="service-name">Kidney Care</div>
+    </div>
+    </a>
+
+    <a class ="service-link" href="servicesPages/general.html">
+    <div class="service-tile">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <path d="M4 7h16a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2z"/>
+          <path d="M12 11v6M9 14h6"/>
+        </svg>
+      </div>
+      <div class="service-name">General Clinic</div>
+    </div>
+    </a>
+
+  </div>
+</section>
+<section class="doctors-wrap" id="doctors">
+  <h2 class="doctors-title">Our Doctors</h2>
+
+  <div class="doctors-grid">
+    <div class="doctor-card">
+      <div class="doctor-photo">
+        <img src="Assets/doctor1.png" alt="Dr. Radin Renula">
+      </div>
+      <div class="doctor-info">
+        <p class="doctor-name">Dr. Radin Renula</p>
+        <p class="doctor-spec">Cardiologist</p>
+      </div>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-photo">
+        <img src="Assets/doctor2.png" alt="Dr. Vinuka Jayavihan">
+      </div>
+      <div class="doctor-info">
+        <p class="doctor-name">Dr. Vinuka Jayavihan</p>
+        <p class="doctor-spec">Neurologist</p>
+      </div>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-photo">
+        <img src="Assets/doctor3.png" alt="Dr. chamidu">
+      </div>
+      <div class="doctor-info">
+        <p class="doctor-name">Dr. Chamidu Rathnayake</p>
+        <p class="doctor-spec">Nephrologist</p>
+      </div>
+    </div>
+
+    <div class="doctor-card">
+      <div class="doctor-photo">
+        <img src="Assets/doctor4.png" alt="Dr. Poojana Fernando">
+      </div>
+      <div class="doctor-info">
+        <p class="doctor-name">Dr. Poojana Fernando</p>
+        <p class="doctor-spec">General Physician</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
   <div id="about" class="section">
@@ -463,7 +301,7 @@
     nextBtn.addEventListener("click", () => { next(); restart(); });
     prevBtn.addEventListener("click", () => { prev(); restart(); });
 
-    function start() { timer = setInterval(next, 7000); }
+    function start() { timer = setInterval(next, 7000); } // slow
     function restart() { clearInterval(timer); start(); }
 
     
