@@ -463,7 +463,7 @@
     nextBtn.addEventListener("click", () => { next(); restart(); });
     prevBtn.addEventListener("click", () => { prev(); restart(); });
 
-    function start() { timer = setInterval(next, 7000); } // slow
+    function start() { timer = setInterval(next, 7000); }
     function restart() { clearInterval(timer); start(); }
 
     
