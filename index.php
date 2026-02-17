@@ -332,7 +332,7 @@
 
 
   <div class="hero">
-    <h1>BETTER CARE. BETTER LIFE</h1>
+    <h1>!!!!POOJANA IS GAY!!!!</h1>
     <p>Stay healthy, focused, and confident throughout your university life.</p>
   </div>
 
