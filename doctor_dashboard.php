@@ -2,7 +2,7 @@
 session_start();
 include 'database.php';
 
-// Check if doctor is logged in
+
 if (!isset($_SESSION['doctor_id'])) {
     header("Location: doctor_login.html");
     exit();
@@ -11,8 +11,7 @@ if (!isset($_SESSION['doctor_id'])) {
 $doctor_id = $_SESSION['doctor_id'];
 $doctor_name = $_SESSION['doctor_name'];
 
-// SQL Query to fetch appointments for this specific doctor
-// Note: We join with the Patients table to get the name instead of just the ID
+
 $sql = "SELECT a.id, p.pname, a.appoint_date, a.appoint_status 
         FROM appointments a 
         JOIN Patients p ON a.pid = p.pid 
@@ -72,18 +71,29 @@ $result = $stmt->get_result();
             </tr>
         </thead>
         <tbody>
-            <?php while($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><strong>#<?php echo $row['id']; ?></strong></td>
-                <td><?php echo htmlspecialchars($row['pname']); ?></td>
-                <td><?php echo date('M d, Y', strtotime($row['appoint_date'])); ?></td>
-                <td>
-                    <span class="status-<?php echo $row['appoint_status']; ?>">
-                        <?php echo $row['appoint_status']; ?>
-                    </span>
-                </td>
-            </tr>
-            <?php endwhile; ?>
+        <?php while($row = $result->fetch_assoc()): ?>
+        <tr>
+           <td><strong>#<?php echo $row['id']; ?></strong></td>
+           <td><?php echo htmlspecialchars($row['pname']); ?></td>
+           <td><?php echo date('M d, Y', strtotime($row['appoint_date'])); ?></td>
+           <td>
+            <span class="status-<?php echo $row['appoint_status']; ?>">
+                <?php echo $row['appoint_status']; ?>
+            </span>
+           </td>
+           <td>
+            <?php if($row['appoint_status'] == 'Pending'): ?>
+                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" 
+                   style="color: green; text-decoration: none; margin-right: 10px;">✅ Confirm</a>
+                
+                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Cancelled" 
+                   style="color: red; text-decoration: none;">❌ Cancel</a>
+            <?php else: ?>
+                <span style="color: #888;">No actions</span>
+            <?php endif; ?>
+           </td>
+        </tr>
+        <?php endwhile; ?>
         </tbody>
     </table>
     <?php else: ?>
