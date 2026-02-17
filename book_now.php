@@ -1,8 +1,8 @@
 <?php
 include 'database.php';
 // doctors
-$doctor_query = "SELECT did, dname, specialisation, fee FROM Doctors";
-$doctors = $conn->query($doctor_query);
+$doctorquery = "SELECT did, dname, specialisation, fee FROM Doctors";
+$doctors = $conn->query($doctorquery);
 ?>
 
 <!DOCTYPE html>
