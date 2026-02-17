@@ -33,7 +33,7 @@ $count = 0;
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f4f7f6; }
         
-        /* The Navigation Bar */
+        /* Restored Navigation Bar Styles */
         .nav-bar { 
             background: #fff; 
             padding: 15px 50px; 
@@ -42,37 +42,30 @@ $count = 0;
             align-items: center; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
         }
-
         .header-links a { 
             text-decoration: none; 
             font-weight: bold; 
             margin-left: 20px; 
-            transition: 0.3s;
+            font-size: 16px;
         }
-
         .btn-home { color: #007bff; }
         .btn-logout { color: #dc3545; }
 
+        /* Table & Content Styles */
         .content { padding: 30px 50px; }
-        
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            background: #fff; 
-            border-radius: 10px; 
-            overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-        }
-
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #f0f0f0; }
-        th { background: #28a745; color: white; text-transform: uppercase; font-size: 14px; }
+        th { background: #28a745; color: white; font-size: 15px; }
         
         .time-badge { background: #e8f0fe; color: #1967d2; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; }
         
-        /* Status Colors */
         .status-Pending { color: #f39c12; font-weight: bold; }
         .status-Confirmed { color: #28a745; font-weight: bold; }
         .status-Cancelled { color: #dc3545; font-weight: bold; }
+
+        .btn-action { padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: bold; }
+        .btn-confirm { color: #28a745; border: 1px solid #28a745; }
+        .btn-confirm:hover { background: #28a745; color: white; }
     </style>
 </head>
 <body>
@@ -89,6 +82,13 @@ $count = 0;
 
 <div class="content">
     <h2>Today's Schedule & Times</h2>
+    
+    <?php if (isset($_GET['msg'])): ?>
+        <div style="padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+            <strong><?php echo htmlspecialchars($_GET['msg']); ?></strong>
+        </div>
+    <?php endif; ?>
+
     <table>
         <thead>
             <tr>
@@ -110,16 +110,12 @@ $count = 0;
                 <td>#<?php echo $row['id']; ?></td>
                 <td><?php echo htmlspecialchars($row['pname']); ?></td>
                 <td><span class="time-badge"><?php echo $patient_time; ?></span></td>
-                <td>
-                    <span class="status-<?php echo $row['appoint_status']; ?>">
-                        <?php echo $row['appoint_status']; ?>
-                    </span>
-                </td>
+                <td><span class="status-<?php echo $row['appoint_status']; ?>"><?php echo $row['appoint_status']; ?></span></td>
                 <td>
                     <?php if($row['appoint_status'] == 'Pending'): ?>
-                        <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" style="color: green; text-decoration: none;">Confirm</a>
+                        <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn-action btn-confirm">Confirm</a>
                     <?php else: ?>
-                        <span style="color: #999;">No Actions</span>
+                        <span style="color: #aaa; font-style: italic;">No actions</span>
                     <?php endif; ?>
                 </td>
             </tr>
