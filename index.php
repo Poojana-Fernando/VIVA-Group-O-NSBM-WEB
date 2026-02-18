@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Channeling | Home</title>
+  <title>NSBM Healthcare | Home</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -210,8 +210,64 @@
     <p><strong>Location:</strong> Homagama, Sri Lanka</p>
   </div>
 
-  <footer>
-    <p>&copy; 2026 E-Channeling System. All Rights Reserved.</p>
+  <footer class="site-footer">
+  <div class="footer-container">
+    
+    <div class="footer-col brand-col">
+      <img src="Assets/logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
+      <p class="footer-desc">
+        Providing safe, reliable, and student-friendly healthcare to ensure you stay healthy, focused, and confident throughout your academic journey.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#doctors">Our Doctors</a></li>
+        <li><a href="book_now.php">Book Appointment</a></li>
+        <li><a href="doctor_login.html">Doctor Portal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Departments</h3>
+      <ul>
+        <li><a href="servicesPages/heart.html">Heart Centre</a></li>
+        <li><a href="servicesPages/brain.html">Brain & Spine</a></li>
+        <li><a href="servicesPages/kidney.html">Kidney Care</a></li>
+        <li><a href="servicesPages/general.html">General Clinic</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>
+          <strong>Location:</strong>
+          NSBM Green University, Homagama, Sri Lanka
+        </li>
+        <li>
+          <strong>Phone:</strong>
+          +94 11 234 5678
+        </li>
+        <li>
+          <strong>Email:</strong>
+          nsbmhealthcare@nsbm.lk
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <?php echo date("Y"); ?> NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
   </footer>
 
     <script>
