@@ -4,18 +4,24 @@ include 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pid = $_SESSION['patient_id'];
-    $did = $_POST['doctor_id'];
+    $did = (int)$_POST['doctor_id'];
     $date = $_POST['appoint_date'];
     $status = 'Pending';
 
-    $stmt = $conn->prepare("INSERT INTO appointments (pid, did, appoint_date, appoint_status) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("iiss", $pid, $did, $date, $status);
+    $appointment_id = getNextSequence($db, 'appointments');
 
-    if ($stmt->execute()) {
+    $result = $db->appointments->insertOne([
+        'id' => $appointment_id,
+        'pid' => $pid,
+        'did' => $did,
+        'appoint_date' => $date,
+        'appoint_status' => $status
+    ]);
+
+    if ($result->getInsertedCount() > 0) {
         echo "Appointment booked successfully! <a href='patient_dashboard.php'>View My Appointments</a>";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error processing booking.";
     }
-    $stmt->close();
 }
 ?>

@@ -8,8 +8,7 @@ if (!isset($_SESSION['patient_id'])) {
 }
 
 
-$doctor_query = "SELECT did, dname, specialisation, fee FROM Doctors";
-$doctors = $conn->query($doctor_query);
+$doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 'specialisation' => 1, 'fee' => 1]]);
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +22,11 @@ $doctors = $conn->query($doctor_query);
         <label>Select Doctor:</label><br>
         <select name="doctor_id" required>
             <option value="">-- Choose a Doctor --</option>
-            <?php while($doc = $doctors->fetch_assoc()): ?>
+            <?php foreach($doctors as $doc): ?>
                 <option value="<?php echo $doc['did']; ?>">
                     Dr. <?php echo $doc['dname']; ?> (<?php echo $doc['specialisation']; ?>) - LKR <?php echo $doc['fee']; ?>
                 </option>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </select>
         <br><br>
 

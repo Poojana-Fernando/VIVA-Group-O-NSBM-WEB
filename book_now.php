@@ -1,8 +1,7 @@
 <?php
 include 'database.php';
 // doctors
-$doctorquery = "SELECT did, dname, specialisation, fee FROM Doctors";
-$doctors = $conn->query($doctorquery);
+$doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 'specialisation' => 1, 'fee' => 1]]);
 ?>
 
 <!DOCTYPE html>
@@ -40,11 +39,11 @@ $doctors = $conn->query($doctorquery);
             <label>Select Doctor:</label>
             <select name="did" required>
                 <option value="">-- Choose Specialist --</option>
-                <?php while($doc = $doctors->fetch_assoc()): ?>
+                <?php foreach($doctors as $doc): ?>
                     <option value="<?php echo $doc['did']; ?>">
                         Dr. <?php echo $doc['dname']; ?> (<?php echo $doc['specialisation']; ?>) - LKR <?php echo $doc['fee']; ?>
                     </option>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group">

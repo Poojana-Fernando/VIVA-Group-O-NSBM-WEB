@@ -10,17 +10,35 @@ if (!isset($_SESSION['doctor_id'])) {
 $doctor_id = $_SESSION['doctor_id'];
 $doctor_name = $_SESSION['doctor_name'];
 
-$sql = "SELECT a.id, p.pname, a.appoint_date, a.appoint_status, d.start_time 
-        FROM appointments a 
-        JOIN Patients p ON a.pid = p.pid 
-        JOIN Doctors d ON a.did = d.did
-        WHERE a.did = ?
-        ORDER BY a.id ASC"; 
+// Aggregation pipeline to join appointments with patients and doctors
+$pipeline = [
+    ['$match' => ['did' => $doctor_id]],
+    ['$lookup' => [
+        'from' => 'patients',
+        'localField' => 'pid',
+        'foreignField' => 'pid',
+        'as' => 'patient'
+    ]],
+    ['$unwind' => '$patient'],
+    ['$lookup' => [
+        'from' => 'doctors',
+        'localField' => 'did',
+        'foreignField' => 'did',
+        'as' => 'doctor'
+    ]],
+    ['$unwind' => '$doctor'],
+    ['$sort' => ['id' => 1]],
+    ['$project' => [
+        'id' => 1,
+        'pname' => '$patient.pname',
+        'appoint_date' => 1,
+        'appoint_status' => 1,
+        'start_time' => '$doctor.start_time'
+    ]]
+];
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $doctor_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$result = $db->appointments->aggregate($pipeline);
+$appointments = iterator_to_array($result);
 
 $slot_duration = 20; 
 $count = 0; 
@@ -100,7 +118,7 @@ $count = 0;
             </tr>
         </thead>
         <tbody>
-            <?php while($row = $result->fetch_assoc()): 
+            <?php foreach($appointments as $row): 
                 $start = strtotime($row['start_time']);
                 $minutes_to_add = $count * $slot_duration;
                 $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", $start));
@@ -119,7 +137,7 @@ $count = 0;
                     <?php endif; ?>
                 </td>
             </tr>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

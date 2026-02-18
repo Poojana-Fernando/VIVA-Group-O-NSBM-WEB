@@ -7,19 +7,20 @@ if (!isset($_SESSION['doctor_id'])) {
 }
 
 if (isset($_GET['id']) && isset($_GET['status'])) {
-    $appointment_id = $_GET['id'];
+    $appointment_id = (int)$_GET['id'];
     $new_status = $_GET['status'];
     $doctor_id = $_SESSION['doctor_id'];
 
-    $stmt = $conn->prepare("UPDATE appointments SET appoint_status = ? WHERE id = ? AND did = ?");
-    $stmt->bind_param("sii", $new_status, $appointment_id, $doctor_id);
+    $result = $db->appointments->updateOne(
+        ['id' => $appointment_id, 'did' => $doctor_id],
+        ['$set' => ['appoint_status' => $new_status]]
+    );
 
-    if ($stmt->execute()) {
-        
+    if ($result->getModifiedCount() > 0 || $result->getMatchedCount() > 0) {
         header("Location: doctor_dashboard.php?msg=Appointment " . $new_status . " successfully!");
         exit();
     } else {
-        echo "Error: " . $conn->error;
+        echo "Error: Appointment not found or not authorized.";
     }
 }
 ?>

@@ -1,2 +1,7 @@
 node_modules/
 package-lock.json
+vendor/
+composer.phar
+composer-setup.php
+composer_output.txt
+cacert.pem

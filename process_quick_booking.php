@@ -5,38 +5,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pname = $_POST['pname'];
     $pemail = $_POST['pemail'];
     $pcontact = $_POST['pcontact'];
-    $did = $_POST['did'];
+    $did = (int)$_POST['did'];
     $date = $_POST['appoint_date'];
 
     // 1. Patient Handling (Check if exists, or create new)
-    $check = $conn->prepare("SELECT pid FROM Patients WHERE email = ?");
-    $check->bind_param("s", $pemail);
-    $check->execute();
-    $result = $check->get_result();
+    $patient = $db->patients->findOne(['email' => $pemail]);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $pid = $row['pid'];
+    if ($patient) {
+        $pid = $patient['pid'];
     } else {
         // Register new patient automatically
-        $ins = $conn->prepare("INSERT INTO Patients (pname, email, contact) VALUES (?, ?, ?)");
-        $ins->bind_param("sss", $pname, $pemail, $pcontact);
-        $ins->execute();
-        $pid = $conn->insert_id;
+        $pid = getNextSequence($db, 'patients');
+        $db->patients->insertOne([
+            'pid' => $pid,
+            'pname' => $pname,
+            'email' => $pemail,
+            'contact' => $pcontact,
+            'created_at' => new MongoDB\BSON\UTCDateTime()
+        ]);
     }
 
     // 2. Queue and Time Slot Calculation
     // Count how many people booked before this person for the same doctor and date
-    $count_query = $conn->prepare("SELECT COUNT(*) as total FROM appointments WHERE did = ? AND appoint_date = ?");
-    $count_query->bind_param("is", $did, $date);
-    $count_query->execute();
-    $position = $count_query->get_result()->fetch_assoc()['total'];
+    $position = $db->appointments->countDocuments([
+        'did' => $did,
+        'appoint_date' => $date
+    ]);
 
     // Fetch Doctor details for the receipt
-    $doc_query = $conn->prepare("SELECT dname, specialisation, start_time FROM Doctors WHERE did = ?");
-    $doc_query->bind_param("i", $did);
-    $doc_query->execute();
-    $doc = $doc_query->get_result()->fetch_assoc();
+    $doc = $db->doctors->findOne(
+        ['did' => $did],
+        ['projection' => ['dname' => 1, 'specialisation' => 1, 'start_time' => 1]]
+    );
 
     // Calculate time: Start Time + (Position * 20 mins)
     $slot_duration = 20;
@@ -44,11 +44,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", strtotime($doc['start_time'])));
 
     // 3. Insert the Appointment into the database
-    $book = $conn->prepare("INSERT INTO appointments (pid, did, appoint_date, appoint_status) VALUES (?, ?, ?, 'Pending')");
-    $book->bind_param("iis", $pid, $did, $date);
+    $booking_id = getNextSequence($db, 'appointments');
+    $result = $db->appointments->insertOne([
+        'id' => $booking_id,
+        'pid' => $pid,
+        'did' => $did,
+        'appoint_date' => $date,
+        'appoint_status' => 'Pending'
+    ]);
 
-    if ($book->execute()) {
-        $booking_id = $conn->insert_id;
+    if ($result->getInsertedCount() > 0) {
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -102,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>
         <?php
     } else {
-        echo "<div style='color: red; padding: 20px;'>Error processing booking: " . $conn->error . "</div>";
+        echo "<div style='color: red; padding: 20px;'>Error processing booking.</div>";
     }
 }
 ?>
