@@ -35,7 +35,7 @@ $count = 0;
         body { font-family: Arial, sans-serif; margin: 0; background: #f4f7f6; }
         .nav { background: #fff; padding: 15px; display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; }
         .content { padding: 20px; }
-        table { width: 100%; border-collapse: collapse; background: #fff; }
+        table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 15px; overflow: hidden; border-radius: 8px 8px 0 0;}
         th, td { padding: 12px; border: 1px solid #eee; text-align: left; }
         th { background: #28a745; color: white; }
         .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; font-size: 12px; font-weight: bold; transition: opacity 0.2s;}
