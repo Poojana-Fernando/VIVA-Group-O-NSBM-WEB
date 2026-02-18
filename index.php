@@ -187,6 +187,16 @@
         <p class="doctor-spec">General Physician</p>
       </div>
     </div>
+
+    <div class="doctor-card">
+      <div class="doctor-photo">
+        <img src="Assets/doctor5.jpeg" alt="Dr. Kasun Mihiran">
+      </div>
+      <div class="doctor-info">
+        <p class="doctor-name">Dr. Kasun Mihiran</p>
+        <p class="doctor-spec">Dermatologist</p>
+      </div>
+    </div>
   </div>
 </section>
 
