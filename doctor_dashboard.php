@@ -43,8 +43,11 @@ $count = 0;
         .confirm { border: 1px solid green; color: green; }
         .cancel { border: 1px solid red; color: red; }
         .card {background-color: #fff; padding: 15px 20px; border-radius:8px; display:flex; align-items: center; transition: transform 0.2s; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px;}
-        .card:hover { transform: translateY(-5px);
-        }
+        .badge {padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block;}
+        .confirmed {background-color: #28a745; color: white;}
+        .cancelled {background-color: #dc3545; color: white;}
+        .pending {background-color: #ffc107; color: black;}
+
 </style>
 </head>
 <body>
@@ -77,7 +80,21 @@ $count = 0;
             <td>#<?php echo $row['id']; ?></td>
             <td><?php echo htmlspecialchars($row['pname']); ?></td>
             <td><?php echo $patient_time; ?></td>
-            <td><?php echo $row['appoint_status']; ?></td>
+            <td>
+                <?php
+                $status = $row['appoint_status'];
+                if ($status == "Confirmed") {
+                    echo '<span class="badge confirmed">Confirmed</span>';
+                    }
+                    elseif ($status == "Cancelled") {
+                        echo '<span class="badge cancelled">Cancelled</span>';
+                        }
+                        else {
+                            echo '<span class="badge pending">Pending</span>';
+                            }
+                            ?>
+            </td>
+
             <td>
                 <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn confirm"onclick="this.style.display='none';">Confirm</a>
                 <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Cancelled" class="btn cancel"onclick="return confirmCancel();">Cancel</a>
