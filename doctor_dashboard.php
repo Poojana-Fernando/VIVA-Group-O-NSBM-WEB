@@ -38,9 +38,14 @@ $count = 0;
         table { width: 100%; border-collapse: collapse; background: #fff; }
         th, td { padding: 12px; border: 1px solid #eee; text-align: left; }
         th { background: #28a745; color: white; }
-        .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; font-size: 12px; font-weight: bold; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 3px; font-size: 12px; font-weight: bold; transition: opacity 0.2s;}
+        .btn:hover { opacity: 0.8; }
         .confirm { border: 1px solid green; color: green; }
         .cancel { border: 1px solid red; color: red; }
+        .card {background-color: #fff; padding: 15px 20px; border-radius:8px; display:flex; align-items: center; transition: transform 0.2s; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px;}
+        .card:hover { transform: translateY(-5px);
+         
+}
     </style>
 </head>
 <body>
