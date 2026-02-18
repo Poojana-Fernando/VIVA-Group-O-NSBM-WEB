@@ -44,9 +44,8 @@ $count = 0;
         .cancel { border: 1px solid red; color: red; }
         .card {background-color: #fff; padding: 15px 20px; border-radius:8px; display:flex; align-items: center; transition: transform 0.2s; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 15px;}
         .card:hover { transform: translateY(-5px);
-         
-}
-    </style>
+        }
+</style>
 </head>
 <body>
 
@@ -74,18 +73,25 @@ $count = 0;
             $count++;
         ?>
         <tr>
+
             <td>#<?php echo $row['id']; ?></td>
             <td><?php echo htmlspecialchars($row['pname']); ?></td>
             <td><?php echo $patient_time; ?></td>
             <td><?php echo $row['appoint_status']; ?></td>
             <td>
-                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn confirm">Confirm</a>
-                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Cancelled" class="btn cancel">Cancel</a>
+                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn confirm"onclick="this.style.display='none';">Confirm</a>
+                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Cancelled" class="btn cancel"onclick="return confirmCancel();">Cancel</a>
+
             </td>
         </tr>
         <?php endwhile; ?>
     </table>
 </div>
+<script>
+function confirmCancel() {
+    return confirm("Are you sure you want to cancel the appointment?");
+}
+</script>
 
 </body>
 </html>
