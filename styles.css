@@ -275,21 +275,17 @@ body {
 .section p {
   color: var(--muted);
 }
-/* About and Contact sections styled as cards for visual consistency */
 
-#contact.section {
-  background: #fff;
-  border-radius: 22px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-soft);
-  padding: 50px 20px;
-}
+/* About section styled as a card for visual consistency */
+
 #about.section {
-  background: #1efa01;
+  background: #ffffff;
+  width: 100%;
   border-radius: 22px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
-  padding: 50px 20px;
+  padding: 60px 30px;
+  margin-bottom: 40px;
 }
 
 
@@ -424,9 +420,17 @@ body {
 
 .services-title {
   text-align: center;
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  padding: 10px;
+  margin-bottom: 40px;
+  font-size: clamp(34px, 4vw, 56px);
+  font-size: 22px;
+  letter-spacing: -0.02em;
   margin: 0 0 18px;
-  font-size: 26px;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .services-grid {
@@ -502,6 +506,7 @@ body {
   text-decoration: none;
   color: inherit;
   display: block;
+  box-shadow: var(--shadow);
 }
 
 .service-link:focus-visible {
@@ -519,15 +524,24 @@ body {
 
 .doctors-title {
   text-align: center;
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  padding: 10px;
+  margin-bottom: 40px;
+  font-size: clamp(34px, 4vw, 56px);
+  font-size: 22px;
+  letter-spacing: -0.02em;
   margin: 0 0 18px;
-  font-size: 26px;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .doctors-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+
 }
 
 .doctor-card {
@@ -537,6 +551,7 @@ body {
   overflow: hidden;
   box-shadow: var(--shadow-soft);
   transition: .2s ease;
+  margin-bottom: 40px;
 }
 
 .doctor-card:hover {
@@ -676,23 +691,6 @@ body {
   padding-left: 5px;
 }
 
-.contact-col li {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
-
-.contact-col strong {
-  color: #ffffff;
-  display: block;
-  margin-bottom: 3px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-
 /* Footer Bottom Bar */
 .footer-bottom {
   max-width: 1200px;
@@ -734,4 +732,21 @@ body {
   .footer-legal a {
     margin: 0 10px;
   }
+}
+/* Smooth scrolling for links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base reveal state */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* State when visible on screen */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
