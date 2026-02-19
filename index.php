@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Channeling | Home</title>
+  <title>NSBM Healthcare | Home</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -17,7 +17,7 @@
 
     <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        
     </div>
 
     <div class="nav-actions">
@@ -88,67 +88,67 @@
   </div>
 </div>
 <section class="services-wrap">
-  <h2 class="services-title">Our areas of expertise</h2>
+  <h2 class="services-title reveal">Our areas of expertise</h2>
 
-  <div class="services-grid">
+  <div class="services-grid reveal">
 
-    <a class ="service-link" href="servicesPages/heart.html">
-    <div class="service-tile active">
-      <div class="service-icon">
+    <a class ="service-link reveal" href="servicesPages/heart.html">
+    <div class="service-tile active reveal">
+      <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
           <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
         </svg>
       </div>
-      <div class="service-name">Heart Centre</div>
+      <div class="service-name reveal">Heart Centre</div>
     </div>
     </a>
     
-    <a class ="service-link" href="servicesPages/brain.html">
-    <div class="service-tile">
-      <div class="service-icon">
+    <a class ="service-link reveal" href="servicesPages/brain.html">
+    <div class="service-tile reveal">
+      <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
           <path d="M8 4a4 4 0 0 0-4 4v2a3 3 0 0 0 2 2.8V16a4 4 0 0 0 4 4"/>
           <path d="M16 4a4 4 0 0 1 4 4v2a3 3 0 0 1-2 2.8V16a4 4 0 0 1-4 4"/>
           <path d="M9 8h1M14 8h1M9 12h1M14 12h1"/>
         </svg>
       </div>
-      <div class="service-name">Brain &amp; Spine</div>
+      <div class="service-name reveal">Brain &amp; Spine</div>
     </div>
     </a>
 
-    <a class ="service-link" href="servicesPages/kidney.html">
-    <div class="service-tile">
-      <div class="service-icon">
+    <a class ="service-link reveal" href="servicesPages/kidney.html">
+    <div class="service-tile reveal">
+      <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
           <path d="M7 3c3 0 5 3 5 7s-2 8-5 8-5-2-5-6 2-9 5-9z"/>
           <path d="M17 3c3 0 5 3 5 7s-2 8-5 8-5-2-5-6 2-9 5-9z"/>
           <path d="M12 12v9"/>
         </svg>
       </div>
-      <div class="service-name">Kidney Care</div>
+      <div class="service-name reveal">Kidney Care</div>
     </div>
     </a>
 
-    <a class ="service-link" href="servicesPages/general.html">
-    <div class="service-tile">
-      <div class="service-icon">
+    <a class ="service-link reveal" href="servicesPages/general.html">
+    <div class="service-tile reveal">
+      <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
           <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
           <path d="M4 7h16a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2z"/>
           <path d="M12 11v6M9 14h6"/>
         </svg>
       </div>
-      <div class="service-name">General Clinic</div>
+      <div class="service-name reveal">General Clinic</div>
     </div>
     </a>
 
   </div>
 </section>
 <section class="doctors-wrap" id="doctors">
-  <h2 class="doctors-title">Our Doctors</h2>
+  <h2 class="doctors-title reveal">Our Doctors</h2>
 
   <div class="doctors-grid">
-    <div class="doctor-card">
+    <div class="doctor-card reveal">
       <div class="doctor-photo">
         <img src="Assets/doctor1.png" alt="Dr. Radin Renula">
       </div>
@@ -158,7 +158,7 @@
       </div>
     </div>
 
-    <div class="doctor-card">
+    <div class="doctor-card reveal">
       <div class="doctor-photo">
         <img src="Assets/doctor2.png" alt="Dr. Vinuka Jayavihan">
       </div>
@@ -168,7 +168,7 @@
       </div>
     </div>
 
-    <div class="doctor-card">
+    <div class="doctor-card reveal">
       <div class="doctor-photo">
         <img src="Assets/doctor3.png" alt="Dr. chamidu">
       </div>
@@ -178,7 +178,7 @@
       </div>
     </div>
 
-    <div class="doctor-card">
+    <div class="doctor-card reveal">
       <div class="doctor-photo">
         <img src="Assets/doctor4.png" alt="Dr. Poojana Fernando">
       </div>
@@ -187,21 +187,11 @@
         <p class="doctor-spec">General Physician</p>
       </div>
     </div>
-
-    <div class="doctor-card">
-      <div class="doctor-photo">
-        <img src="Assets/doctor5.png" alt="Dr. Kasun Mihiran">
-      </div>
-      <div class="doctor-info">
-        <p class="doctor-name">Dr. Kasun Mihiran</p>
-        <p class="doctor-spec">Dermatologist</p>
-      </div>
-    </div>
   </div>
 </section>
 
 
-  <div id="about" class="section">
+  <div id="about" class="section reveal">
     <h2>About Us</h2>
     <p>
       At our University Hospital, your wellbeing comes first.
@@ -213,15 +203,65 @@
     </p>
   </div>
 
-  <div id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p><strong>Email:</strong> nsbmhealthcare@nsbm.lk</p>
-    <p><strong>Phone:</strong> +94 11 234 5678</p>
-    <p><strong>Location:</strong> Homagama, Sri Lanka</p>
+
+  <footer class="site-footer reveal">
+  <div class="footer-container reveal">
+    
+    <div class="footer-col brand-col reveal">
+      <img src="Assets/logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
+      <p class="footer-desc reveal">
+        Providing safe, reliable, and student-friendly healthcare to ensure you stay healthy, focused, and confident throughout your academic journey.
+      </p>
+    </div>
+
+    <div class="footer-col reveal">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#doctors">Our Doctors</a></li>
+        <li><a href="book_now.php">Book Appointment</a></li>
+        <li><a href="doctor_login.html">Doctor Portal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col reveal">
+      <h3>Departments</h3>
+      <ul>
+        <li><a href="servicesPages/heart.html">Heart Centre</a></li>
+        <li><a href="servicesPages/brain.html">Brain & Spine</a></li>
+        <li><a href="servicesPages/kidney.html">Kidney Care</a></li>
+        <li><a href="servicesPages/general.html">General Clinic</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col reveal">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>
+          <strong>Location:</strong>
+          NSBM Green University, Homagama, Sri Lanka
+        </li>
+        <li>
+          <strong>Phone:</strong>
+          +94 11 234 5678
+        </li>
+        <li>
+          <strong>Email:</strong>
+          nsbmhealthcare@nsbm.lk
+        </li>
+      </ul>
+    </div>
+
   </div>
 
-  <footer>
-    <p>&copy; 2026 E-Channeling System. All Rights Reserved.</p>
+  <div class="footer-bottom reveal">
+    <p>&copy; <?php echo date("Y"); ?> NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
   </footer>
 
     <script>
@@ -324,6 +364,26 @@
     updateDots();
     start();
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // add animation class when visible
+        entry.target.classList.add("active");
+      } else {
+        // remove it when not visible (so it can animate again)
+        entry.target.classList.remove("active");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  items.forEach((el) => observer.observe(el));
+});
+</script>
+
 
 
 
