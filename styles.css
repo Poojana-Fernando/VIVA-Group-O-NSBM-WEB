@@ -275,9 +275,17 @@ body {
 .section p {
   color: var(--muted);
 }
+/* About and Contact sections styled as cards for visual consistency */
 
 #contact.section {
   background: #fff;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  padding: 50px 20px;
+}
+#about.section {
+  background: #1efa01;
   border-radius: 22px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
@@ -683,21 +691,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
- .about-col-li {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
 
-.about-col strong {
-  color: #00fd1e;
-  display: block;
-  margin-bottom: 3px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
 
 /* Footer Bottom Bar */
 .footer-bottom {
