@@ -190,7 +190,7 @@
 
     <div class="doctor-card">
       <div class="doctor-photo">
-        <img src="Assets/doctor5.jpeg" alt="Dr. Kasun Mihiran">
+        <img src="Assets/doctor5.png" alt="Dr. Kasun Mihiran">
       </div>
       <div class="doctor-info">
         <p class="doctor-name">Dr. Kasun Mihiran</p>
