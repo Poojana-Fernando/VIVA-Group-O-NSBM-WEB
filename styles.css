@@ -683,6 +683,21 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+ .about-col-li {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.about-col strong {
+  color: #00fd1e;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
 /* Footer Bottom Bar */
 .footer-bottom {
