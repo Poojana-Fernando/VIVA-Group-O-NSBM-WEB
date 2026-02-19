@@ -34,6 +34,7 @@ $count = 0;
     <style>
         body { font-family: Arial, sans-serif; margin: 0; background: #f4f7f6; }
         .nav { background: #fff; padding: 15px; display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; }
+        .navbar
         .content { padding: 20px; }
         table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 15px; overflow: hidden; border-radius: 8px 8px 0 0;}
         th, td { padding: 12px; border: 1px solid #eee; text-align: left; }
@@ -97,7 +98,7 @@ $count = 0;
 
             <td>
                 <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn confirm"onclick="this.style.display='none';">Confirm</a>
-                <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Cancelled" class="btn cancel"onclick="return confirmCancel();">Cancel</a>
+                <a href="#" class="btn cancel"onclick="openModal(<?php echo $row['id']; ?>); return false;">Cancel</a>
 
             </td>
         </tr>
@@ -105,10 +106,41 @@ $count = 0;
     </table>
 </div>
 <script>
-function confirmCancel() {
-    return confirm("Are you sure you want to cancel the appointment?");
+
+let selectedId = null;
+
+function openModal(id) {
+    selectedId = id;
+    document.getElementById("cancelModal").style.display = "flex";
 }
+
+function closeModal() {
+    document.getElementById("cancelModal").style.display = "none";
+}
+
+function proceedCancel() {
+    window.location.href = "update_status.php?id=" + selectedId + "&status=Cancelled";
+}
+
 </script>
+
+<!-- Cancel Confirmation Modal -->
+<div id="cancelModal" class="modal">
+    <div class="modal-content">
+
+        <span class="close-icon" onclick="closeModal()">&times;</span>
+
+        <h3>Cancel Appointment</h3>
+        <p>Are you sure you want to cancel this appointment?</p>
+
+        <div class="modal-buttons">
+            <button class="confirm-btn" onclick="proceedCancel()">Yes, Cancel</button>
+            <button class="close-btn" onclick="closeModal()">No</button>
+        </div>
+
+    </div>
+</div>
+
 
 </body>
 </html>
