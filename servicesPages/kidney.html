@@ -134,6 +134,146 @@
       .navbar{ padding: 10px 14px; }
       .brand img{ height: 40px; }
     }
+    .site-footer {
+  background-color: #0f172a;
+  /* Deep professional slate */
+  color: #f8fafc;
+  padding: 60px 0 20px;
+  font-family: inherit;
+  margin-top: 60px;
+  text-align: left;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 40px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-logo {
+  max-width: 160px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-desc {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.footer-col h3 {
+  font-size: 1.25rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Medical Blue underline accent for headings */
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #3b82f6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  font-size: 0.95rem;
+  display: inline-block;
+}
+
+/* Hover effect for links */
+.footer-col ul li a:hover {
+  color: #3b82f6;
+  padding-left: 5px;
+}
+
+.contact-col li {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.contact-col strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 50px auto 0;
+  padding: 20px 20px 0;
+  border-top: 1px solid #334155;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.footer-legal a {
+  color: #64748b;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+  color: #ffffff;
+}
+
+/* Responsive Tablet and Mobile Design */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-legal a {
+    margin: 0 10px;
+  }
+}
   </style>
 </head>
 
@@ -171,6 +311,66 @@
       </ul>
     </section>
   </main>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    
+    <div class="footer-col brand-col">
+      <img src="logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
+      <p class="footer-desc">
+        Providing safe, reliable, and student-friendly healthcare to ensure you stay healthy, focused, and confident throughout your academic journey.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#doctors">Our Doctors</a></li>
+        <li><a href="book_now.php">Book Appointment</a></li>
+        <li><a href="doctor_login.html">Doctor Portal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Departments</h3>
+      <ul>
+        <li><a href="servicesPages/heart.html">Heart Centre</a></li>
+        <li><a href="servicesPages/brain.html">Brain & Spine</a></li>
+        <li><a href="servicesPages/kidney.html">Kidney Care</a></li>
+        <li><a href="servicesPages/general.html">General Clinic</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>
+          <strong>Location:</strong>
+          NSBM Green University, Homagama, Sri Lanka
+        </li>
+        <li>
+          <strong>Phone:</strong>
+          +94 11 234 5678
+        </li>
+        <li>
+          <strong>Email:</strong>
+          nsbmhealthcare@nsbm.lk
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <?php echo date("Y"); ?> NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  </footer>
 
 </body>
 </html>
