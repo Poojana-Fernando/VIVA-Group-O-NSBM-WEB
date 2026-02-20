@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brain & Spine | NSBM Healthcare</title>
+  <link rel="stylesheet" href="servicestyle.css?v=3" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="../index.php" class="brand">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare">
+    </a>
+
+    <div class="nav-actions">
+      <a href="../book_now.php" class="btn btn-book">Book Now</a>
+      <a href="../doctor_login.html" class="btn btn-doc">Doctor Portal</a>
+    </div>
+  </nav>
+
+  <!-- Top Banner -->
+  <header class="top-banner">
+    <img src="../Assets/services/slide2.jpg" alt="Heart Centre Banner">
+  </header>
+
+  <!-- Content -->
+  <main class="page">
+
+    <!-- Service Description -->
+    <section class="service-box reveal">
+      <h1>Brain & Spine</h1>
+      <p>
+        Brain and spine care often referred to as neuroscience or neurological care—focuses on the diagnosis, treatment, and prevention of disorders affecting the central nervous system (CNS).
+         Because the CNS acts as the body's command center, this field is highly specialized and requires a multidisciplinary approach.
+      </p>
+
+      <ul>
+        <li>The Brain: The control center for memory, emotion, motor skills, and vital functions like breathing. Care focuses on everything from tumors and strokes to degenerative diseases.</li>
+        <li>The Spine: The highway for nerve signals between the brain and the rest of the body. Care involves the vertebrae (bones), discs (cushions), and the spinal cord itself.</li>
+      </ul>
+    </section>
+
+    <!-- Gallery -->
+    <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/brain1.jpg" alt="Heart Care">
+        <img src="../Assets/services/brain2.jpg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/brain3.jpg" alt="Healthy Lifestyle">
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ✅ Reveal script (repeats on scroll) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("active");
+          else entry.target.classList.remove("active");
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>

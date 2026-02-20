@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kidney Care | NSBM Healthcare</title>
+  <link rel="stylesheet" href="servicestyle.css?v=3" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="../index.php" class="brand">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare">
+    </a>
+
+    <div class="nav-actions">
+      <a href="../book_now.php" class="btn btn-book">Book Now</a>
+      <a href="../doctor_login.html" class="btn btn-doc">Doctor Portal</a>
+    </div>
+  </nav>
+
+  <!-- Top Banner -->
+  <header class="top-banner">
+    <img src="../Assets/services/slide3.jpg" alt="Heart Centre Banner">
+  </header>
+
+  <!-- Content -->
+  <main class="page">
+
+    <!-- Service Description -->
+    <section class="service-box reveal">
+      <h1>Kidney Care</h1>
+      <p>
+        Kidney care, or nephrology, focuses on the health of these two bean-shaped organs 
+        that filter your blood. Because the kidneys regulate everything from blood pressure to red blood cell production,
+         keeping them healthy is essential for your entire body.
+      </p>
+
+      <ul>
+        <li>Waste Removal: Filtering out toxins and excess fluid, which leave the body as urine.</li>
+        <li>Blood Pressure Control: Releasing hormones that regulate how much your blood vessels constrict.</li>
+        <li>Chemical Balance: Maintaining the right levels of electrolytes like sodium, potassium, and calcium.</li>
+        <li>Red Blood Cell Support: Producing a hormone called erythropoietin that tells your bones to make blood.</li>
+      </ul>
+    </section>
+
+    <!-- Gallery -->
+    <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/kidney1.jpg" alt="Heart Care">
+        <img src="../Assets/services/kidney2.jpeg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/kidney3.png" alt="Healthy Lifestyle">
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ✅ Reveal script (repeats on scroll) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("active");
+          else entry.target.classList.remove("active");
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>

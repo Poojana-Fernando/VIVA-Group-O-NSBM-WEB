@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heart Centre | NSBM Healthcare</title>
+  <link rel="stylesheet" href="servicestyle.css?v=3" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="../index.php" class="brand">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare">
+    </a>
+
+    <div class="nav-actions">
+      <a href="../book_now.php" class="btn btn-book">Book Now</a>
+      <a href="../doctor_login.html" class="btn btn-doc">Doctor Portal</a>
+    </div>
+  </nav>
+
+  <!-- Top Banner -->
+  <header class="top-banner">
+    <img src="../Assets/services/slide1.jpeg" alt="Heart Centre Banner">
+  </header>
+
+  <!-- Content -->
+  <main class="page">
+
+    <!-- Service Description -->
+    <section class="service-box reveal">
+      <h1>Heart Centre</h1>
+      <p>
+        Our Heart Centre supports students and staff with heart-related consultations,
+        basic cardiac screening, and guidance for a healthier lifestyle.
+      </p>
+
+      <ul>
+        <li>Blood pressure and pulse checks</li>
+        <li>Chest pain / palpitations initial assessment</li>
+        <li>Health advice: diet, exercise, stress management</li>
+        <li>Referrals to specialist care when needed</li>
+      </ul>
+      <p>
+        The heart is a muscular organ that pumps blood throughout the body, supplying oxygen and nutrients while removing waste products. It plays a crucial role 
+        in the circulatory system and is essential for maintaining overall health and well-being. The heart consists of four chambers: the left and right atria, and the left and right ventricles. It beats approximately 100,000 times per day,
+         circulating about 5 liters of blood every minute. Proper heart function is vital for sustaining life, and maintaining a healthy lifestyle can help prevent cardiovascular diseases and promote long-term heart health.
+      </p>
+    </section>
+
+    <!-- Gallery -->
+    <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/heart1.jpg" alt="Heart Care">
+        <img src="../Assets/services/heart2.jpg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/heart3.jpg" alt="Healthy Lifestyle">
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ✅ Reveal script (repeats on scroll) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("active");
+          else entry.target.classList.remove("active");
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>
