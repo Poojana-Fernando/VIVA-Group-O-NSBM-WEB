@@ -3,462 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Heart Centre | NSBM Healthcare</title>
-
-  <style>
-    :root{
-      --text:#0f172a;
-      --muted:#475569;
-      --bg:#f6f8fb;
-      --border:rgba(15,23,42,.12);
-      --shadow: 0 18px 45px rgba(15,23,42,.12);
-      --blue:#2563eb;
-    }
-
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-
-.navbar {
-  position: sticky;
-  top: 0;
-  height: 80px;
-  z-index: 1000;
-
-  background: rgba(255, 255, 255, .75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  border-bottom: 1px solid var(--border);
-  padding: 14px 28px;
-
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-
-.nsbm-logo {
-  display: flex;
-  height: 60px;
-  align-items: center;
-}
-
-.nsbm-logo img {
-  height: 150px;
-  width: auto;
-  display: block;
-  object-fit: contain;
-}
-
-
-.nav-actions {
-  display: flex;
-  gap: 12px;
-}
-
-
-.nav-links {
-  margin-left: auto;
-  display: flex;
-  gap: 18px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--muted);
-  font-weight: 600;
-  padding: 8px 10px;
-  border-radius: 10px;
-  transition: .2s;
-}
-
-.nav-links a:hover {
-  color: var(--text);
-  background: rgba(37, 99, 235, .08);
-}
-
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 10px 16px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 700;
-  border: 1px solid transparent;
-  transition: .2s ease;
-  cursor: pointer;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, .08);
-}
-
-.btn-book {
-  background: var(--blue);
-  color: #fff;
-}
-
-.btn-book:hover {
-  background: var(--blue-dark);
-  transform: translateY(-1px);
-}
-
-.btn-doc {
-  background: var(--green);
-  color: #fff;
-}
-
-.btn-doc:hover {
-  background: var(--green-dark);
-  transform: translateY(-1px);
-}
-
-
-.nav-btn {
-  padding: 9px 14px;
-  font-size: 14px;
-}
-
-
-    .brand{
-      display:flex;
-      align-items:center;
-      height: 40px;
-
-    }
-
-    .brand img{
-      height: 120px;      
-      width: auto;
-      display:block;
-      object-fit: contain;
-    }
-
-    .nav-links{
-      display:flex;
-      gap: 16px;
-      align-items:center;
-    }
-
-    .nav-links a{
-      text-decoration:none;
-      color: #64748b;
-      font-weight: 700;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: .2s;
-    }
-    .nav-links a:hover{
-      background: rgba(37,99,235,.08);
-      color: var(--text);
-    }
-
-    /* ===== Banner ===== */
-    .top-banner{
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: #e6ebe5;
-    }
-    .top-banner img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    /* ===== Content ===== */
-    .page{
-      width: 100%;
-      margin: -30px 0 0;
-      padding: 0 0 10px;
-    }
-
-    .service-box{
-    
-      background:#40be42;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      box-shadow: 0 18px 45px rgba(15,23,42,.12);
-      padding: 32px 40px;
-      width: 100%;
-    }
-
-    h1{
-      margin: 0 0 10px;
-      font-size: 42px;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-    }
-
-    p{
-      margin: 0 0 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 16px;
-      color: #ffffff;
-    }
-
-    ul{
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-      line-height: 1.7;
-      color: #ffffff;
-    }
-
-    @media (max-width: 700px){
-      .top-banner{ height: 220px; }
-      h1{ font-size: 32px; }
-      .navbar{ padding: 10px 14px; }
-      .brand img{ height: 40px; }
-    }
-  .site-footer {
-  background-color: #0f172a;
-  /* Deep professional slate */
-  color: #f8fafc;
-  padding: 60px 0 20px;
-  font-family: inherit;
-  margin-top: 60px;
-  text-align: left;
-}
-
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  gap: 40px;
-}
-
-.footer-col {
-  flex: 1;
-  min-width: 220px;
-}
-
-.footer-logo {
-  max-width: 160px;
-  height: auto;
-  display: block;
-  margin-bottom: 20px;
-  filter: brightness(0) invert(1);
-}
-
-.footer-desc {
-  line-height: 1.6;
-  font-size: 0.95rem;
-  color: #94a3b8;
-}
-
-.footer-col h3 {
-  font-size: 1.25rem;
-  margin-bottom: 25px;
-  color: #ffffff;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-/* Medical Blue underline accent for headings */
-.footer-col h3::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 40px;
-  height: 3px;
-  background-color: #3b82f6;
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-col ul li {
-  margin-bottom: 12px;
-}
-
-.footer-col ul li a {
-  color: #94a3b8;
-  text-decoration: none;
-  transition: color 0.3s ease, padding-left 0.3s ease;
-  font-size: 0.95rem;
-  display: inline-block;
-}
-
-/* Hover effect for links */
-.footer-col ul li a:hover {
-  color: #3b82f6;
-  padding-left: 5px;
-}
-
-.contact-col li {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
-
-.contact-col strong {
-  color: #ffffff;
-  display: block;
-  margin-bottom: 3px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Footer Bottom Bar */
-.footer-bottom {
-  max-width: 1200px;
-  margin: 50px auto 0;
-  padding: 20px 20px 0;
-  border-top: 1px solid #334155;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
-  color: #64748b;
-}
-
-.footer-legal a {
-  color: #64748b;
-  text-decoration: none;
-  margin-left: 20px;
-  transition: color 0.3s ease;
-}
-
-.footer-legal a:hover {
-  color: #ffffff;
-}
-
-/* Responsive Tablet and Mobile Design */
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-
-  .footer-legal a {
-    margin: 0 10px;
-  }
-}
-/* Smooth scrolling for links */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Base reveal state */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-
-    /* State when visible on screen */
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-  </style>
+  <title>Brain & Spine | NSBM Healthcare</title>
+  <link rel="stylesheet" href="servicestyle.css?v=3" />
 </head>
 
 <body>
 
-    <div class="navbar">
-    <a href="index.php" class="nsbm-logo">
-        <img src="logo.png" alt="nsbm-logo">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="../index.php" class="brand">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare">
     </a>
 
-    <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-
     <div class="nav-actions">
-        <a href="book_now.php" class="btn btn-book nav-btn">Book Now</a>
-
-        <?php if(isset($_SESSION['doctor_id'])): ?>
-        <a href="doctor_dashboard.php" class="btn btn-doc nav-btn">Dashboard</a>
-        <?php else: ?>
-        <a href="doctor_login.html" class="btn btn-doc nav-btn">Doctor Portal</a>
-        <?php endif; ?>
-    </div>
+      <a href="../book_now.php" class="btn btn-book">Book Now</a>
+      <a href="../doctor_login.html" class="btn btn-doc">Doctor Portal</a>
     </div>
   </nav>
 
-
+  <!-- Top Banner -->
   <header class="top-banner">
-    <img src="../Assets/services/slide2.jpg" alt="Brain and spine Centre Banner">
+    <img src="../Assets/services/slide2.jpg" alt="Heart Centre Banner">
   </header>
 
- 
+  <!-- Content -->
   <main class="page">
-    <section class="service-box">
+
+    <!-- Service Description -->
+    <section class="service-box reveal">
       <h1>Brain & Spine</h1>
       <p>
-        Our Heart Centre supports students and staff with heart-related consultations,
-        basic cardiac screening, and guidance for a healthier lifestyle.
+        Brain and spine care often referred to as neuroscience or neurological care—focuses on the diagnosis, treatment, and prevention of disorders affecting the central nervous system (CNS).
+         Because the CNS acts as the body's command center, this field is highly specialized and requires a multidisciplinary approach.
       </p>
 
       <ul>
-        <li>Blood pressure and pulse checks</li>
-        <li>Chest pain / palpitations initial assessment</li>
-        <li>Health advice: diet, exercise, stress management</li>
-        <li>Referrals to specialist care when needed</li>
+        <li>The Brain: The control center for memory, emotion, motor skills, and vital functions like breathing. Care focuses on everything from tumors and strokes to degenerative diseases.</li>
+        <li>The Spine: The highway for nerve signals between the brain and the rest of the body. Care involves the vertebrae (bones), discs (cushions), and the spinal cord itself.</li>
       </ul>
     </section>
-  </main>
 
-  <footer class="site-footer">
-  <div class="footer-container">
+    <!-- Gallery -->
+    <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/brain1.jpg" alt="Heart Care">
+        <img src="../Assets/services/brain2.jpg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/brain3.jpg" alt="Healthy Lifestyle">
+      </div>
+    </section>
+
+  </main>
+    <footer class="site-footer reveal">
+  <div class="footer-container reveal">
     
-    <div class="footer-col brand-col">
-      <img src="logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
-      <p class="footer-desc">
+    <div class="footer-col brand-col reveal">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
+      <p class="footer-desc reveal">
         Providing safe, reliable, and student-friendly healthcare to ensure you stay healthy, focused, and confident throughout your academic journey.
       </p>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col reveal">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#doctors">Our Doctors</a></li>
-        <li><a href="book_now.php">Book Appointment</a></li>
-        <li><a href="doctor_login.html">Doctor Portal</a></li>
+        <li><a href="../index.php">Home</a></li>
+        <li><a href="../index.php">About Us</a></li>
+        <li><a href="../index.php">Our Doctors</a></li>
+        <li><a href="../book_now.php">Book Appointment</a></li>
+        <li><a href="../doctor_login.html">Doctor Portal</a></li>
       </ul>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col reveal">
       <h3>Departments</h3>
       <ul>
-        <li><a href="servicesPages/heart.html">Heart Centre</a></li>
-        <li><a href="servicesPages/brain.html">Brain & Spine</a></li>
-        <li><a href="servicesPages/kidney.html">Kidney Care</a></li>
-        <li><a href="servicesPages/general.html">General Clinic</a></li>
+        <li><a href="../servicesPages/heart.html">Heart Centre</a></li>
+        <li><a href="../servicesPages/brain.html">Brain & Spine</a></li>
+        <li><a href="../servicesPages/kidney.html">Kidney Care</a></li>
+        <li><a href="../servicesPages/general.html">General Clinic</a></li>
       </ul>
     </div>
 
-    <div class="footer-col contact-col">
+    <div class="footer-col contact-col reveal">
       <h3>Contact Us</h3>
       <ul>
         <li>
@@ -478,26 +104,30 @@
 
   </div>
 
-  <div class="footer-bottom">
-    <p>&copy; <?php echo date("Y"); ?> NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
-    <div class="footer-legal">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </div>
+<div class="footer-bottom reveal">
+  <p>&copy; 2026 NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
+  <div class="footer-legal">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
   </div>
+</div>
   </footer>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-});
-</script>
+  <!-- ✅ Reveal script (repeats on scroll) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("active");
+          else entry.target.classList.remove("active");
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((el) => observer.observe(el));
+    });
+  </script>
+
 </body>
 </html>
