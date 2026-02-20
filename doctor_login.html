@@ -126,18 +126,36 @@
       color: var(--muted);
       text-align:center;
     }
+    /* Smooth scrolling for links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base reveal state */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* State when visible on screen */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
   </style>
 </head>
 
 <body>
-  <div class="card">
+  <div class="card reveal">
     <div class="top">
-      <h1 class="title">Doctor Login</h1>
-      <a class="back" href="index.php">← Home</a>
+      <h1 class="title reveal">Doctor Login</h1>
+      <a class="back reveal" href="index.php">← Home</a>
     </div>
 
-    <p class="subtitle">Sign in to manage your appointments and schedule.</p>
+    <p class="subtitle reveal">Sign in to manage your appointments and schedule.</p>
 
     <form action="login_check.php" method="POST">
       <label for="email">Email</label>
@@ -146,11 +164,29 @@
       <label for="pass">Password</label>
       <input id="pass" type="password" name="dpassword" required placeholder="Enter your password">
 
-      <button class="btn" type="submit">Login</button>
+      <button class="btn reveal" type="submit">Login</button>
     </form>
 
-    <div class="note">NSBM Healthcare • Doctor Portal</div>
+    <div class="note reveal">NSBM Healthcare • Doctor Portal</div>
   </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".reveal");
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // add animation class when visible
+        entry.target.classList.add("active");
+      } else {
+        // remove it when not visible (so it can animate again)
+        entry.target.classList.remove("active");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  items.forEach((el) => observer.observe(el));
+});
+</script>
 </body>
 </html>
