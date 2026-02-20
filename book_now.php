@@ -14,11 +14,13 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
         background-color: #f8f9fa;
         font-family: 'Poppins', sans-serif;
     }
-
     .navbar {
-        background: #fff;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+        display: ;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
     .container {
         max-width: 1200px;
@@ -124,10 +126,53 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
+.nsbm-logo {
+  display: flex;
+  height: 60px;
+  align-items: center;
+}
+
+.nsbm-logo img {
+  height: 150px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.appointment-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  margin: auto;
+  text-align: center; /* Centers the heading and inline elements */
+}
+
+.logo-container {
+  margin-bottom: 20px; /* Space between logo and "Quick Appointment" text */
+  display: flex;
+  justify-content: center;
+}
+
+.form-logo {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+}
+
+h2 {
+  color: #1a237e; /* Matches your dark blue text */
+  margin-bottom: 25px;
+  font-family: sans-serif;
+}
 
     </style>
 </head>
 <body>
+
+       <div class="navbar">
+    <a href="index.php" class="nsbm-logo">
+        <img src="Assets/logo.png" alt="nsbm-logo">
+    </a>
     <form action="process_quick_booking.php" method="POST" class="reveal">
         <h2>Quick Appointment</h2>
         
