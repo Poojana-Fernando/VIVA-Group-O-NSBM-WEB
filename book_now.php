@@ -11,11 +11,11 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
        
     
     body {
-        background-color: #f8f9fa;
+        background-color: #ffffff;
         font-family: 'Poppins', sans-serif;
     }
     .navbar {
-        display: ;
+        display: block;
         align-items: center;
         padding: 20px;
         background-color: #ffffff;
@@ -29,7 +29,7 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
     }
 
     form {
-        background: #ffffff;
+        background: #eeeeee;
         max-width: 550px;
         margin: 60px auto;
         padding: 45px 55px;
@@ -76,9 +76,9 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
     form input:focus,
     form select:focus {
         outline: none;
-        border-color: #2563eb;
+        border-color: #328d2f;
         background-color: #fff;
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        box-shadow: 0 0 0 4px #328d2f;
     }
 
     form select {
@@ -101,71 +101,66 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
         font-weight: 700;
         cursor: pointer;
         transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+        background: #328d2f;
+        box-shadow: 0 10px 25px #328d2f;
     }
 
     form button[type="submit"]:hover {
         transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(103, 107, 228, 0.35);
+        box-shadow: 0 15px 30px ;
         background: #328d2f;
     }
     /* Smooth scrolling for links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Base reveal state */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-/* State when visible on screen */
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.nsbm-logo {
-  display: flex;
-  height: 60px;
-  align-items: center;
-}
-
-.nsbm-logo img {
-  height: 150px;
-  width: auto;
-  display: block;
-  object-fit: contain;
-}
-.appointment-card {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 450px;
-  margin: auto;
-  text-align: center; /* Centers the heading and inline elements */
-}
-
-.logo-container {
-  margin-bottom: 20px; /* Space between logo and "Quick Appointment" text */
-  display: flex;
-  justify-content: center;
-}
-
-.form-logo {
-  width: 150px; /* Adjust size as needed */
-  height: auto;
-}
-
-h2 {
-  color: #1a237e; /* Matches your dark blue text */
-  margin-bottom: 25px;
-  font-family: sans-serif;
-}
-
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Base reveal state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    /* State when visible on screen */
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nsbm-logo {
+      display: flex;
+      height: 60px;
+      align-items: center;
+    }
+    .nsbm-logo img {
+      height: 150px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .appointment-card {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      margin: auto;
+      text-align: center; /* Centers the heading and inline elements */
+    }
+    .logo-container {
+      margin-bottom: 20px; /* Space between logo and "Quick Appointment" text */
+      display: flex;
+      justify-content: center;
+    }
+    .form-logo {
+      width: 150px; /* Adjust size as needed */
+      height: auto;
+    }
+    h2 {
+      color: #1a237e; /* Matches your dark blue text */
+      margin-bottom: 25px;
+      font-family: sans-serif;
+    }
     </style>
+    
 </head>
 <body>
 
