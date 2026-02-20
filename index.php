@@ -32,7 +32,7 @@
     </div>
 
 
-  <section class="hero">
+  <section class="hero reveal">
   <div class="hero-panel">
     <p class="hero-small">Welcome to</p>
     <h1 class="hero-title">NSBM HEALTHCARE</h1>
@@ -72,7 +72,7 @@
 </section>
 
 
-  <div class="slider-wrap">
+  <div class="slider-wrap reveal">
   <div class="slider" id="slider">
     <div class="slides" id="slides">
       <div class="slide"><img src="Assets/slide1.jpg" alt="Slide 1"></div>
