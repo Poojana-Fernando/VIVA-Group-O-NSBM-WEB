@@ -107,11 +107,28 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
         box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
         background: linear-gradient(to right, #1d4ed8, #1e40af);
     }
+    /* Smooth scrolling for links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base reveal state */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* State when visible on screen */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 
     </style>
 </head>
 <body>
-    <form action="process_quick_booking.php" method="POST">
+    <form action="process_quick_booking.php" method="POST" class="reveal">
         <h2>Quick Appointment</h2>
         
         <input type="text" name="pname" placeholder="Full Name" required>
@@ -133,5 +150,24 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
 
         <button type="submit">Confirm Booking</button>
     </form>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // add animation class when visible
+        entry.target.classList.add("active");
+      } else {
+        // remove it when not visible (so it can animate again)
+        entry.target.classList.remove("active");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  items.forEach((el) => observer.observe(el));
+});
+</script>
 </body>
 </html>
