@@ -9,6 +9,7 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
     <title>Quick Book</title>
     <style>
        
+    
     body {
         background-color: #f8f9fa;
         font-family: 'Poppins', sans-serif;
@@ -52,6 +53,9 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
     }
 
     form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form input[type="number"],
     form input[type="date"],
     form select {
         width: 100%;
