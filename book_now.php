@@ -91,7 +91,7 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
         width: 100%;
         padding: 18px;
         margin-top: 10px;
-        background: linear-gradient(to right, #2563eb, #1d4ed8);
+        background: #328d2f;
         color: white;
         border: none;
         border-radius: 16px;
@@ -104,8 +104,8 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
 
     form button[type="submit"]:hover {
         transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
-        background: linear-gradient(to right, #1d4ed8, #1e40af);
+        box-shadow: 0 15px 30px rgba(103, 107, 228, 0.35);
+        background: #328d2f;
     }
     /* Smooth scrolling for links */
 html {
