@@ -127,11 +127,12 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
     }
     .nsbm-logo {
       display: flex;
-      height: 60px;
+      height: 30px;
       align-items: center;
+      justify-content: center;
     }
     .nsbm-logo img {
-      height: 150px;
+      height: 100px;
       width: auto;
       display: block;
       object-fit: contain;
