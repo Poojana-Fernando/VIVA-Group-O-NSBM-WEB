@@ -3,15 +3,28 @@ session_start();
 include 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['demail'];
+    // validate the Email
+    $email = trim($_POST['demail']);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Invalid email format."); // if the email is wrong, stop the process.
+    }
+
     $password = $_POST['dpassword'];
 
-    $doctor = $db->doctors->findOne(['email' => $email]);
+    // getting doctor details from the database
+    $stmt = $conn->prepare("SELECT did, dname, password FROM Doctors WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($doctor) {
-        if ($password === $doctor['password']) {
-            $_SESSION['doctor_id'] = $doctor['did'];
-            $_SESSION['doctor_name'] = $doctor['dname'];
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+
+        // secure Password Verification
+        // use password_verify() instead of '==='
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['doctor_id'] = $row['did'];
+            $_SESSION['doctor_name'] = $row['dname'];
             header("Location: doctor_dashboard.php");
             exit();
         } else {
@@ -20,5 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Incorrect Email.";
     }
+    $stmt->close();
 }
 ?>
