@@ -26,6 +26,7 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
         max-width: 1200px;
         margin: auto;
         padding: 20px;
+
     }
 
     form {
@@ -147,7 +148,7 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
       text-align: center; /* Centers the heading and inline elements */
     }
     .logo-container {
-      margin-bottom: 20px; /* Space between logo and "Quick Appointment" text */
+      margin-bottom: auto; /* Space between logo and "Quick Appointment" text */
       display: flex;
       justify-content: center;
     }
@@ -156,7 +157,7 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
       height: auto;
     }
     h2 {
-      color: #1a237e; /* Matches your dark blue text */
+      color: #000000;
       margin-bottom: 25px;
       font-family: sans-serif;
     }
