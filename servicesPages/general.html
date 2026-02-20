@@ -3,179 +3,38 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Heart Centre | NSBM Healthcare</title>
-
-  <style>
-    :root{
-      --text:#0f172a;
-      --muted:#475569;
-      --bg:#f6f8fb;
-      --border:rgba(15,23,42,.12);
-      --shadow: 0 18px 45px rgba(15,23,42,.12);
-      --blue:#2563eb;
-    }
-
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-
-    .navbar{
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 16px;
-
-      padding: 12px 22px;
-      background: rgba(255,255,255,.85);
-      border-bottom: 1px solid var(--border);
-
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      height: 40px;
-
-    }
-
-    .brand img{
-      height: 120px;      
-      width: auto;
-      display:block;
-      object-fit: contain;
-    }
-
-    .nav-links{
-      display:flex;
-      gap: 16px;
-      align-items:center;
-    }
-
-    .nav-links a{
-      text-decoration:none;
-      color: #64748b;
-      font-weight: 700;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: .2s;
-    }
-    .nav-links a:hover{
-      background: rgba(37,99,235,.08);
-      color: var(--text);
-    }
-
-    /* ===== Banner ===== */
-    .top-banner{
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: #e6ebe5;
-    }
-    .top-banner img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    /* ===== Content ===== */
-    .page{
-      width: 100%;
-      margin: -30px 0 0;
-      padding: 0 0 10px;
-    }
-
-    .service-box{
-    
-      background:#40be42;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      box-shadow: 0 18px 45px rgba(15,23,42,.12);
-      padding: 32px 40px;
-      width: 100%;
-    }
-
-    h1{
-      margin: 0 0 10px;
-      font-size: 42px;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-    }
-
-    p{
-      margin: 0 0 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 16px;
-      color: #ffffff;
-    }
-
-    ul{
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-      line-height: 1.7;
-      color: #ffffff;
-    }
-
-    @media (max-width: 700px){
-      .top-banner{ height: 220px; }
-      h1{ font-size: 32px; }
-      .navbar{ padding: 10px 14px; }
-      .brand img{ height: 40px; }
-    }
-    /* Smooth scrolling for links */
-    html {
-      scroll-behavior: smooth;
-    }
-    /* Base reveal state */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-    /* State when visible on screen */
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <title>General Clinic | NSBM Healthcare</title>
+  <link rel="stylesheet" href="servicestyle.css?v=3" />
 </head>
 
 <body>
 
-
+  <!-- Navbar -->
   <nav class="navbar">
-  
-    <a class="brand" href="../index.php">
-      <img src="../Assets/logo.png" alt="NSBM Healthcare Logo">
+    <a href="../index.php" class="brand">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare">
     </a>
 
-
+    <div class="nav-actions">
+      <a href="../book_now.php" class="btn btn-book">Book Now</a>
+      <a href="../doctor_login.html" class="btn btn-doc">Doctor Portal</a>
+    </div>
   </nav>
 
-
-  <header class="top-banner reveal">
-    <img src="../Assets/services/slide4.jpg" alt="General Clinic Banner">
+  <!-- Top Banner -->
+  <header class="top-banner">
+    <img src="../Assets/services/slide4.jpg" alt="Heart Centre Banner">
   </header>
 
- 
-  <main class="page reveal">
+  <!-- Content -->
+  <main class="page">
+
+    <!-- Service Description -->
     <section class="service-box reveal">
       <h1>General Clinic</h1>
       <p>
-        Our General Clinic supports students and staff with general health consultations,
-        basic health screenings, and guidance for a healthier lifestyle.
+        Our Heart Centre supports students and staff with heart-related consultations,
+        basic cardiac screening, and guidance for a healthier lifestyle.
       </p>
 
       <ul>
@@ -185,25 +44,92 @@
         <li>Referrals to specialist care when needed</li>
       </ul>
     </section>
+
+    <!-- Gallery -->
+    <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/clinic1.jpg" alt="Heart Care">
+        <img src="../Assets/services/clinic2.jpg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/clinic3.jpg" alt="Healthy Lifestyle">
+      </div>
+    </section>
+
   </main>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const items = document.querySelectorAll(".reveal");
+  <footer class="site-footer reveal">
+  <div class="footer-container reveal">
+    
+    <div class="footer-col brand-col reveal">
+      <img src="../Assets/logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
+      <p class="footer-desc reveal">
+        Providing safe, reliable, and student-friendly healthcare to ensure you stay healthy, focused, and confident throughout your academic journey.
+      </p>
+    </div>
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // add animation class when visible
-        entry.target.classList.add("active");
-      } else {
-        // remove it when not visible (so it can animate again)
-        entry.target.classList.remove("active");
-      }
+    <div class="footer-col reveal">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.php">Home</a></li>
+        <li><a href="../index.php">About Us</a></li>
+        <li><a href="../index.php">Our Doctors</a></li>
+        <li><a href="../book_now.php">Book Appointment</a></li>
+        <li><a href="../doctor_login.html">Doctor Portal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col reveal">
+      <h3>Departments</h3>
+      <ul>
+        <li><a href="../servicesPages/heart.html">Heart Centre</a></li>
+        <li><a href="../servicesPages/brain.html">Brain & Spine</a></li>
+        <li><a href="../servicesPages/kidney.html">Kidney Care</a></li>
+        <li><a href="../servicesPages/general.html">General Clinic</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col reveal">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>
+          <strong>Location:</strong>
+          NSBM Green University, Homagama, Sri Lanka
+        </li>
+        <li>
+          <strong>Phone:</strong>
+          +94 11 234 5678
+        </li>
+        <li>
+          <strong>Email:</strong>
+          nsbmhealthcare@nsbm.lk
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+<div class="footer-bottom reveal">
+  <p>&copy; 2026 NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
+  <div class="footer-legal">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </div>
+</div>
+  </footer>
+
+  <!-- ✅ Reveal script (repeats on scroll) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("active");
+          else entry.target.classList.remove("active");
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((el) => observer.observe(el));
     });
-  }, { threshold: 0.15 });
+  </script>
 
-  items.forEach((el) => observer.observe(el));
-});
-</script>
 </body>
 </html>
