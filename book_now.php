@@ -8,9 +8,102 @@ $doctors = $conn->query("SELECT did, dname, specialisation, fee FROM Doctors")->
 <head>
     <title>Quick Book</title>
     <style>
-        body { font-family: sans-serif; max-width: 400px; margin: 20px auto; line-height: 1.6; }
-        input, select, button { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; }
-        button { background: #007bff; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+       
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .navbar {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    form {
+        background: #ffffff;
+        max-width: 550px;
+        margin: 60px auto;
+        padding: 45px 55px;
+        border-radius: 24px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.07);
+    }
+
+    form h2 {
+        text-align: center;
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 0;
+        margin-bottom: 35px;
+        font-size: 28px;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #475569;
+        font-size: 14px;
+    }
+
+    form input[type="text"],
+    form input[type="date"],
+    form select {
+        width: 100%;
+        padding: 16px 20px;
+        margin-bottom: 25px;
+        border: 2px solid #e2e8f0;
+        border-radius: 16px;
+        font-size: 15px;
+        color: #334155;
+        font-family: inherit;
+        background-color: #fdfdfd;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    form input:focus,
+    form select:focus {
+        outline: none;
+        border-color: #2563eb;
+        background-color: #fff;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    form select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 16px center;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+    }
+
+    form button[type="submit"] {
+        width: 100%;
+        padding: 18px;
+        margin-top: 10px;
+        background: linear-gradient(to right, #2563eb, #1d4ed8);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    }
+
+    form button[type="submit"]:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
+        background: linear-gradient(to right, #1d4ed8, #1e40af);
+    }
+
     </style>
 </head>
 <body>
