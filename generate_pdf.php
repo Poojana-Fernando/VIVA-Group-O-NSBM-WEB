@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
     
     $pdf->SetFont('Arial', 'B', 20);
     $pdf->SetTextColor(0, 123, 255); 
-    $pdf->Cell(0, 20, 'E-CHANNELING TICKET', 0, 1, 'C');
+    $pdf->Cell(0, 20, 'E-CHANNELING BOOKING TICKET', 0, 1, 'C');
     
     $pdf->Line(10, 30, 200, 30);
     $pdf->Ln(10);
@@ -114,7 +114,7 @@ if (isset($_GET['id'])) {
     $pdf->Ln(20);
     $pdf->SetFont('Arial', 'I', 10);
     $pdf->SetTextColor(128, 128, 128);
-    $pdf->MultiCell(0, 5, "Please arrive at the hospital at least 15 minutes before your scheduled time slot. \nPresent this digital or printed ticket at the reception desk.", 0, 'C');
+    $pdf->MultiCell(0, 5, "Please arrive at the hospital at least 15 minutes before your scheduled time slot. \nPresent this digital or printed ticket at the reception desk.\n\n NOTE: You'll receive a confirmation email within several hours once your booking is confirmed. Kindly reminder to check your mailbox", 0, 'C');
 
     $pdf->Output('D', 'Appointment_Ticket_' . $booking_id . '.pdf');
 }

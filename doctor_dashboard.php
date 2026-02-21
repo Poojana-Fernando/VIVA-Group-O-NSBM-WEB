@@ -52,7 +52,7 @@ $count = 0;
     <title>Doctor Dashboard | E-Channeling</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f4f7f6; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
         
         /* Dashboard Welcome Bar */
         .welcome-bar { 

@@ -69,8 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <head>
             <meta charset="UTF-8">
             <title>Booking Confirmed | E-Channeling</title>
+            <link rel="stylesheet" href="styles.css" />
             <style>
-                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
                 .receipt-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; border-top: 10px solid #007bff; }
                 .success-icon { font-size: 50px; color: #28a745; text-align: center; margin-bottom: 10px; }
                 h2 { text-align: center; color: #333; margin-top: 0; }
