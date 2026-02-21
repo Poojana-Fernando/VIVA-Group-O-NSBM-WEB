@@ -12,19 +12,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['dpassword'];
 
     // getting doctor details from the database
-    $stmt = $conn->prepare("SELECT did, dname, password FROM Doctors WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $doctor = $db->doctors->findOne(['email' => $email]);
 
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
+    if ($doctor) {
+        $storedPassword = $doctor['password'];
+        $passwordMatch = false;
 
-        // secure Password Verification
-        // use password_verify() instead of '==='
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['doctor_id'] = $row['did'];
-            $_SESSION['doctor_name'] = $row['dname'];
+        // First try bcrypt verification (for hashed passwords)
+        if (password_verify($password, $storedPassword)) {
+            $passwordMatch = true;
+        }
+        // Fallback: direct comparison for plaintext passwords (from migration)
+        elseif ($password === $storedPassword) {
+            $passwordMatch = true;
+
+            // Auto-upgrade: hash the plaintext password for future security
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $db->doctors->updateOne(
+                ['email' => $email],
+                ['$set' => ['password' => $hashedPassword]]
+            );
+        }
+
+        if ($passwordMatch) {
+            $_SESSION['doctor_id'] = $doctor['did'];
+            $_SESSION['doctor_name'] = $doctor['dname'];
             header("Location: doctor_dashboard.php");
             exit();
         } else {
@@ -33,6 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Incorrect Email.";
     }
-    $stmt->close();
 }
 ?>

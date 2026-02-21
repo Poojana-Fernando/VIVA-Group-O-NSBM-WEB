@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update the doctor's password
     $result = $db->doctors->updateOne(
         ['email' => $reset['email']],
-        ['$set' => ['password' => $newPassword]]
+        ['$set' => ['password' => password_hash($newPassword, PASSWORD_DEFAULT)]]
     );
 
     if ($result->getModifiedCount() > 0 || $result->getMatchedCount() > 0) {
