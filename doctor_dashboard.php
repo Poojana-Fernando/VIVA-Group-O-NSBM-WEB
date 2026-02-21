@@ -3,7 +3,7 @@ session_start();
 include 'database.php';
 
 if (!isset($_SESSION['doctor_id'])) {
-    header("Location: doctor_login.html");
+    header("Location: doctor_login.php");
     exit();
 }
 
@@ -31,7 +31,9 @@ $pipeline = [
     ['$project' => [
         'id' => 1,
         'pname' => '$patient.pname',
+        'pemail' => '$patient.email',
         'appoint_date' => 1,
+        'appoint_time' => 1,
         'appoint_status' => 1,
         'start_time' => '$doctor.start_time'
     ]]
@@ -48,25 +50,26 @@ $count = 0;
 <html>
 <head>
     <title>Doctor Dashboard | E-Channeling</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f4f7f6; }
         
-        /* Restored Navigation Bar Styles */
-        .nav-bar { 
+        /* Dashboard Welcome Bar */
+        .welcome-bar { 
             background: #fff; 
-            padding: 15px 50px; 
+            padding: 12px 50px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border-bottom: 1px solid var(--border);
         }
-        .header-links a { 
+        .welcome-bar .doctor-greeting { font-size: 18px; font-weight: bold; color: #333; }
+        .welcome-bar .header-links a { 
             text-decoration: none; 
             font-weight: bold; 
             margin-left: 20px; 
             font-size: 16px;
         }
-        .btn-home { color: #007bff; }
         .btn-logout { color: #dc3545; }
 
         /* Table & Content Styles */
@@ -81,19 +84,22 @@ $count = 0;
         .status-Confirmed { color: #28a745; font-weight: bold; }
         .status-Cancelled { color: #dc3545; font-weight: bold; }
 
-        .btn-action { padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: bold; }
+        .btn-action { padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block; margin-right: 6px; transition: .2s; }
         .btn-confirm { color: #28a745; border: 1px solid #28a745; }
         .btn-confirm:hover { background: #28a745; color: white; }
+        .btn-decline { color: #dc3545; border: 1px solid #dc3545; }
+        .btn-decline:hover { background: #dc3545; color: white; }
     </style>
 </head>
 <body>
 
-<div class="nav-bar">
-    <div style="font-size: 20px; font-weight: bold; color: #333;">
+<?php include 'navbar.php'; ?>
+
+<div class="welcome-bar">
+    <div class="doctor-greeting">
         Welcome, Dr. <?php echo htmlspecialchars($doctor_name); ?>
     </div>
     <div class="header-links">
-        <a href="index.php" class="btn-home">🏠 Home</a>
         <a href="logout.php" class="btn-logout">Logout</a>
     </div>
 </div>
@@ -119,9 +125,13 @@ $count = 0;
         </thead>
         <tbody>
             <?php foreach($appointments as $row): 
-                $start = strtotime($row['start_time']);
-                $minutes_to_add = $count * $slot_duration;
-                $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", $start));
+                if (!empty($row['appoint_time'])) {
+                    $patient_time = $row['appoint_time'];
+                } else {
+                    $start = strtotime($row['start_time']);
+                    $minutes_to_add = $count * $slot_duration;
+                    $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", $start));
+                }
                 $count++;
             ?>
             <tr>
@@ -131,7 +141,12 @@ $count = 0;
                 <td><span class="status-<?php echo $row['appoint_status']; ?>"><?php echo $row['appoint_status']; ?></span></td>
                 <td>
                     <?php if($row['appoint_status'] == 'Pending'): ?>
-                        <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn-action btn-confirm">Confirm</a>
+                        <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Confirmed" class="btn-action btn-confirm" onclick="return confirm('Approve this appointment?')">Confirm</a>
+                        <a href="update_status.php?id=<?php echo $row['id']; ?>&status=Cancelled" class="btn-action btn-decline" onclick="return confirm('Decline this appointment?')">Decline</a>
+                    <?php elseif($row['appoint_status'] == 'Confirmed'): ?>
+                        <span style="color: #28a745; font-weight: 600;">✔ Approved</span>
+                    <?php elseif($row['appoint_status'] == 'Cancelled'): ?>
+                        <span style="color: #dc3545; font-weight: 600;">✖ Declined</span>
                     <?php else: ?>
                         <span style="color: #aaa; font-style: italic;">No actions</span>
                     <?php endif; ?>
@@ -141,5 +156,7 @@ $count = 0;
         </tbody>
     </table>
 </div>
+
+<?php renderFooter(); ?>
 </body>
 </html>

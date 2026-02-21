@@ -10,26 +10,7 @@
 
 <body>
 
-    <div class="navbar">
-    <a href="index.php" class="nsbm-logo">
-        <img src="Assets/logo.png" alt="nsbm-logo">
-    </a>
-
-    <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div class="nav-actions">
-        <a href="book_now.php" class="btn btn-book nav-btn">Book Now</a>
-
-        <?php if(isset($_SESSION['doctor_id'])): ?>
-        <a href="doctor_dashboard.php" class="btn btn-doc nav-btn">Dashboard</a>
-        <?php else: ?>
-        <a href="doctor_login.html" class="btn btn-doc nav-btn">Doctor Portal</a>
-        <?php endif; ?>
-    </div>
-    </div>
+    <?php include 'navbar.php'; ?>
 
 
   <section class="hero">
@@ -92,7 +73,7 @@
 
   <div class="services-grid reveal">
 
-    <a class ="service-link reveal" href="servicesPages/heart.html">
+    <a class ="service-link reveal" href="servicesPages/heart.php">
     <div class="service-tile active reveal">
       <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -103,7 +84,7 @@
     </div>
     </a>
     
-    <a class ="service-link reveal" href="servicesPages/brain.html">
+    <a class ="service-link reveal" href="servicesPages/brain.php">
     <div class="service-tile reveal">
       <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -116,7 +97,7 @@
     </div>
     </a>
 
-    <a class ="service-link reveal" href="servicesPages/kidney.html">
+    <a class ="service-link reveal" href="servicesPages/kidney.php">
     <div class="service-tile reveal">
       <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -129,7 +110,7 @@
     </div>
     </a>
 
-    <a class ="service-link reveal" href="servicesPages/general.html">
+    <a class ="service-link reveal" href="servicesPages/general.php">
     <div class="service-tile reveal">
       <div class="service-icon reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -203,66 +184,27 @@
     </p>
   </div>
 
+  <div id="about" class="section reveal">
+    <h2>Contact Us</h2>
+    <p>
+     <strong>Contact Hospital</strong> - 011-2345678 <br>
+     <strong>Email</strong> - nsbm.healthcare@nsbm.ac.lk
+     <br>
+     <br>
+     <strong>DOCHELP - 011-2345678</strong><br>
+     <strong>Emergency Help - 011-2345678</strong>
+     <br>
+     <br>
+     <strong>Heart Specialised Center</strong> - 011-2345678 <br>
+     <strong>Brain & Spine Specialist</strong> - 011-2345678 <br>
+     <strong>Kidney Specialist</strong> - 011-2345678 <br>
+     <strong>General Physician</strong> - 011-2345678
 
-  <footer class="site-footer reveal">
-  <div class="footer-container reveal">
-    
-    <div class="footer-col brand-col reveal">
-      <img src="Assets/logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
-      <p class="footer-desc reveal">
-        Providing safe, reliable, and student-friendly healthcare to ensure you stay healthy, focused, and confident throughout your academic journey.
-      </p>
-    </div>
-
-    <div class="footer-col reveal">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#doctors">Our Doctors</a></li>
-        <li><a href="book_now.php">Book Appointment</a></li>
-        <li><a href="doctor_login.html">Doctor Portal</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col reveal">
-      <h3>Departments</h3>
-      <ul>
-        <li><a href="servicesPages/heart.html">Heart Centre</a></li>
-        <li><a href="servicesPages/brain.html">Brain & Spine</a></li>
-        <li><a href="servicesPages/kidney.html">Kidney Care</a></li>
-        <li><a href="servicesPages/general.html">General Clinic</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col contact-col reveal">
-      <h3>Contact Us</h3>
-      <ul>
-        <li>
-          <strong>Location:</strong>
-          NSBM Green University, Homagama, Sri Lanka
-        </li>
-        <li>
-          <strong>Phone:</strong>
-          +94 11 234 5678
-        </li>
-        <li>
-          <strong>Email:</strong>
-          nsbmhealthcare@nsbm.lk
-        </li>
-      </ul>
-    </div>
-
+    </p>
   </div>
 
-  <div class="footer-bottom reveal">
-    <p>&copy; <?php echo date("Y"); ?> NSBM Healthcare E-Channeling System. All Rights Reserved.</p>
-    <div class="footer-legal">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </div>
-  </div>
-  </footer>
+
+  <?php renderFooter(); ?>
 
     <script>
     const slider = document.getElementById("slider");

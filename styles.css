@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --green: #22c55e;
   --green-dark: #16a34a;
   --blue: #2563eb;
@@ -732,6 +732,7 @@ body{
     margin: 0 10px;
   }
 }
+
 /* Smooth scrolling for links */
 html {
   scroll-behavior: smooth;

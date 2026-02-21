@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pcontact = $_POST['pcontact'];
     $did = (int)$_POST['did'];
     $date = $_POST['appoint_date'];
+    $appoint_time = isset($_POST['appoint_time']) ? $_POST['appoint_time'] : '';
 
     // 1. Patient Handling (Check if exists, or create new)
     $patient = $db->patients->findOne(['email' => $pemail]);
@@ -38,20 +39,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ['projection' => ['dname' => 1, 'specialisation' => 1, 'start_time' => 1]]
     );
 
-    // Calculate time: Start Time + (Position * 20 mins)
-    $slot_duration = 20;
-    $minutes_to_add = $position * $slot_duration;
-    $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", strtotime($doc['start_time'])));
+    // Use user-selected time if available, otherwise calculate from position
+    if (!empty($appoint_time)) {
+        $patient_time = $appoint_time;
+    } else {
+        $slot_duration = 20;
+        $minutes_to_add = $position * $slot_duration;
+        $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", strtotime($doc['start_time'])));
+    }
 
     // 3. Insert the Appointment into the database
     $booking_id = getNextSequence($db, 'appointments');
-    $result = $db->appointments->insertOne([
+    $appointmentDoc = [
         'id' => $booking_id,
         'pid' => $pid,
         'did' => $did,
         'appoint_date' => $date,
         'appoint_status' => 'Pending'
-    ]);
+    ];
+    if (!empty($appoint_time)) {
+        $appointmentDoc['appoint_time'] = $appoint_time;
+    }
+    $result = $db->appointments->insertOne($appointmentDoc);
 
     if ($result->getInsertedCount() > 0) {
         ?>
