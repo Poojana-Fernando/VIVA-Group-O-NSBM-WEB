@@ -1,69 +1,15 @@
-<?php session_start(); $basePath = '../'; ?>
+<?php
+session_start();
+$basePath = '../';
+?>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kidney Care | NSBM Healthcare</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../servicestyle.css" />
 
-  <style>
-    /* ===== Banner ===== */
-    .top-banner{
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: #e6ebe5;
-    }
-    .top-banner img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    /* ===== Content ===== */
-    .page{
-      width: 100%;
-      margin: -30px 0 0;
-      padding: 0 0 10px;
-    }
-
-    .service-box{
-      background:#40be42;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      box-shadow: 0 18px 45px rgba(15,23,42,.12);
-      padding: 32px 40px;
-      width: 100%;
-    }
-
-    .service-box h1{
-      margin: 0 0 10px;
-      font-size: 42px;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-    }
-
-    .service-box p{
-      margin: 0 0 14px;
-      line-height: 1.7;
-      font-size: 16px;
-      color: #ffffff;
-    }
-
-    .service-box ul{
-      margin: 0;
-      padding-left: 20px;
-      line-height: 1.7;
-      color: #ffffff;
-    }
-
-    @media (max-width: 700px){
-      .top-banner{ height: 220px; }
-      .service-box h1{ font-size: 32px; }
-    }
-  </style>
 </head>
 
 <body>
@@ -78,16 +24,23 @@
     <section class="service-box">
       <h1>Kidney Care</h1>
       <p>
-        Our Kidney Care department supports students and staff with renal consultations,
-        basic screening, and guidance for a healthier lifestyle.
-      </p>
+  Our Kidney Care Clinic supports students and staff with kidney-related consultations,
+  screening, and guidance to protect long-term kidney health.
+</p>
 
-      <ul>
-        <li>Blood pressure and pulse checks</li>
-        <li>Chest pain / palpitations initial assessment</li>
-        <li>Health advice: diet, exercise, stress management</li>
-        <li>Referrals to specialist care when needed</li>
-      </ul>
+<ul>
+  <li>Blood pressure and blood sugar checks (kidney risk screening)</li>
+  <li>Urine tests for protein / infection (basic screening)</li>
+  <li>Advice on hydration, salt intake, and kidney-friendly diet</li>
+  <li>Referral for lab tests and specialist care when needed</li>
+</ul>
+    </section>
+  <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/kidney1.jpg" alt="Heart Care">
+        <img src="../Assets/services/kidney2.jpeg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/kidney3.png" alt="Healthy Lifestyle">
+      </div>
     </section>
   </main>
 

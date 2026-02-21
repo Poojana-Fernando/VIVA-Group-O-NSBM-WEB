@@ -1,69 +1,15 @@
-<?php session_start(); $basePath = '../'; ?>
+<?php
+session_start();
+$basePath = '../';
+?>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Brain & Spine | NSBM Healthcare</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../servicestyle.css" />
 
-  <style>
-    /* ===== Banner ===== */
-    .top-banner{
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: #e6ebe5;
-    }
-    .top-banner img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    /* ===== Content ===== */
-    .page{
-      width: 100%;
-      margin: -30px 0 0;
-      padding: 0 0 10px;
-    }
-
-    .service-box{
-      background:#40be42;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      box-shadow: 0 18px 45px rgba(15,23,42,.12);
-      padding: 32px 40px;
-      width: 100%;
-    }
-
-    .service-box h1{
-      margin: 0 0 10px;
-      font-size: 42px;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-    }
-
-    .service-box p{
-      margin: 0 0 14px;
-      line-height: 1.7;
-      font-size: 16px;
-      color: #ffffff;
-    }
-
-    .service-box ul{
-      margin: 0;
-      padding-left: 20px;
-      line-height: 1.7;
-      color: #ffffff;
-    }
-
-    @media (max-width: 700px){
-      .top-banner{ height: 220px; }
-      .service-box h1{ font-size: 32px; }
-    }
-  </style>
 </head>
 
 <body>
@@ -78,16 +24,23 @@
     <section class="service-box">
       <h1>Brain & Spine</h1>
       <p>
-        Our Brain & Spine department supports students and staff with neurological consultations,
-        basic screening, and guidance for a healthier lifestyle.
-      </p>
+  Our Brain and Spine Care Clinic supports students and staff with assessments for
+  common neurological and spine-related concerns, plus guidance for safer daily habits.
+</p>
 
-      <ul>
-        <li>Blood pressure and pulse checks</li>
-        <li>Chest pain / palpitations initial assessment</li>
-        <li>Health advice: diet, exercise, stress management</li>
-        <li>Referrals to specialist care when needed</li>
-      </ul>
+<ul>
+  <li>Headache / migraine initial assessment</li>
+  <li>Back and neck pain evaluation (posture and strain-related)</li>
+  <li>Numbness / tingling symptom screening</li>
+  <li>Referral for imaging or specialist care when needed</li>
+</ul>
+    </section>
+    <section class="image-gallery reveal">
+      <div class="gallery-container">
+        <img src="../Assets/services/brain1.jpg" alt="Heart Care">
+        <img src="../Assets/services/brain2.jpg" alt="Cardiac Monitoring">
+        <img src="../Assets/services/brain3.jpg" alt="Healthy Lifestyle">
+      </div>
     </section>
   </main>
 
