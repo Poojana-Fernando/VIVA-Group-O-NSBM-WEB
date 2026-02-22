@@ -21,8 +21,8 @@ $basePath = '../';
     <img src="../Assets/services/slide1.jpeg" alt="Heart Centre Banner">
   </header>
 
-  <main class="page">
-    <section class="service-box">
+  <main class="page reveal">
+    <section class="service-box reveal">
       <h1>Heart Centre</h1>
       <p>
         Our Heart Centre supports students and staff with heart-related consultations,

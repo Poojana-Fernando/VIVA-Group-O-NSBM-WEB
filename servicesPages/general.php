@@ -21,8 +21,8 @@ $basePath = '../';
     <img src="../Assets/services/slide4.jpg" alt="General Clinic Banner">
   </header>
 
-  <main class="page">
-    <section class="service-box">
+  <main class="page reveal">
+    <section class="service-box reveal">
       <h1>General Clinic</h1>
       <p>
   Our General Clinic supports students and staff with general medical consultations,

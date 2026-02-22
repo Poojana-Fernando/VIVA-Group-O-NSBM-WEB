@@ -20,8 +20,8 @@ $basePath = '../';
     <img src="../Assets/services/slide2.jpg" alt="Brain and Spine Centre Banner">
   </header>
 
-  <main class="page">
-    <section class="service-box">
+  <main class="page reveal">
+    <section class="service-box reveal">
       <h1>Brain & Spine</h1>
       <p>
   Our Brain and Spine Care Clinic supports students and staff with assessments for
