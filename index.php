@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 });
 </script>
-<script src="js/main.js"></script> <?php include 'chatbot.php'; ?>
+<?php include __DIR__. '/chatbot.php'; ?>
 
 </body>
 </html>
