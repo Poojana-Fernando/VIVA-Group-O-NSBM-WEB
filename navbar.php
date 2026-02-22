@@ -98,6 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
       <a href="#">Terms of Service</a>
     </div>
   </div>
-  
+
 </footer>
 <?php } ?>
