@@ -18,15 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedPassword = $doctor['password'];
         $passwordMatch = false;
 
-        // First try bcrypt verification (for hashed passwords)
+        // First try verification 
         if (password_verify($password, $storedPassword)) {
             $passwordMatch = true;
         }
-        // Fallback: direct comparison for plaintext passwords (from migration)
+        //direct comparison for plaintext passwords (from migration)
         elseif ($password === $storedPassword) {
             $passwordMatch = true;
 
-            // Auto-upgrade: hash the plaintext password for future security
+            // Ahash the plaintext password for future security
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $db->doctors->updateOne(
                 ['email' => $email],
