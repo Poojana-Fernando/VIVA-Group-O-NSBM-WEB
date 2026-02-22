@@ -53,7 +53,7 @@
 </section>
 
 
-  <div class="slider-wrap">
+  <div class="slider-wrap reveal">
   <div class="slider" id="slider">
     <div class="slides" id="slides">
       <div class="slide"><img src="Assets/slide1.jpg" alt="Slide 1"></div>
