@@ -13,7 +13,7 @@
     <?php include 'navbar.php'; ?>
 
 
-  <section class="hero">
+  <section class="hero reveal">
   <div class="hero-panel">
     <p class="hero-small">Welcome to</p>
     <h1 class="hero-title">NSBM HEALTHCARE</h1>
