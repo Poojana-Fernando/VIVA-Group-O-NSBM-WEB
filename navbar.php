@@ -98,6 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
       <a href="#">Terms of Service</a>
     </div>
   </div>
-  <?php include __DIR__ . '/chatbot.php'; ?>
+  
 </footer>
 <?php } ?>
