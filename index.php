@@ -184,7 +184,7 @@
     </p>
   </div>
 
-  <div id="about" class="section reveal">
+  <div id="contact" class="section reveal">
     <h2>Contact Us</h2>
     <p>
      <strong>Contact Hospital</strong> - 011-2345678 <br>
