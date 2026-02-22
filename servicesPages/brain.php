@@ -16,7 +16,7 @@ $basePath = '../';
 
   <?php include '../navbar.php'; ?>
 
-  <header class="top-banner">
+  <header class="top-banner reveal">
     <img src="../Assets/services/slide2.jpg" alt="Brain and Spine Centre Banner">
   </header>
 
