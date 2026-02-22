@@ -13,7 +13,7 @@
     <?php include 'navbar.php'; ?>
 
 
-  <section class="hero">
+  <section class="hero reveal">
   <div class="hero-panel">
     <p class="hero-small">Welcome to</p>
     <h1 class="hero-title">NSBM HEALTHCARE</h1>
@@ -53,7 +53,7 @@
 </section>
 
 
-  <div class="slider-wrap">
+  <div class="slider-wrap reveal">
   <div class="slider" id="slider">
     <div class="slides" id="slides">
       <div class="slide"><img src="Assets/slide1.jpg" alt="Slide 1"></div>
@@ -184,7 +184,7 @@
     </p>
   </div>
 
-  <div id="about" class="section reveal">
+  <div id="contact" class="section reveal">
     <h2>Contact Us</h2>
     <p>
      <strong>Contact Hospital</strong> - 011-2345678 <br>
@@ -319,8 +319,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 });
 </script>
-
-
+<?php include __DIR__. '/chatbot.php'; ?>
 
 </body>
 </html>

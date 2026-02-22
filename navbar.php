@@ -27,8 +27,21 @@ function renderFooter() {
     global $basePath;
     if(!isset($basePath)) $basePath = '';
 ?>
-<footer class="site-footer">
-  <div class="footer-container">
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+<footer class="site-footer reveal">
+  <div class="footer-container reveal">
     
     <div class="footer-col brand-col">
       <img src="<?= $basePath ?>Assets/logo.png" alt="NSBM Healthcare Logo" class="footer-logo">
@@ -85,6 +98,6 @@ function renderFooter() {
       <a href="#">Terms of Service</a>
     </div>
   </div>
-  <?php include __DIR__ . '/chatbot.php'; ?>
+
 </footer>
 <?php } ?>
