@@ -121,13 +121,29 @@
       border: 1px solid rgba(34, 197, 94, .25);
       display: none;
     }
+    /* Smooth scrolling for links */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Base reveal state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    /* State when visible on screen */
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 
 <body>
   <?php include 'navbar.php'; ?>
 
-  <div class="login-wrap">
+  <div class="login-wrap reveal">
     <div class="login-card">
       <div class="top">
         <h1 class="title">Doctor Login</h1>
@@ -155,6 +171,18 @@
           document.getElementById('resetSuccess').style.display = 'block';
         }
       </script>
+      <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+      }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+    </script>
 
       <div class="note">NSBM Healthcare • Doctor Portal</div>
     </div>
