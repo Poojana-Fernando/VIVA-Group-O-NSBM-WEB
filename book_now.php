@@ -13,7 +13,7 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
     <title>Book an Appointment | NSBM Healthcare</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-        /* ===== Booking Page ===== */
+        
         .booking-page {
             min-height: calc(100vh - 80px);
             display: flex;
@@ -79,7 +79,7 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
         .booking-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(34, 197, 94, .35); }
         .booking-submit-btn:active { transform: translateY(0); }
 
-        /* ===== Time Slot Modal ===== */
+        
         .modal-overlay {
             position: fixed; inset: 0; z-index: 9999;
             background: rgba(15, 23, 42, .55);
@@ -164,12 +164,12 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
     <?php include 'navbar.php'; ?>
 
     <div class="booking-page">
-        <!-- Logo -->
+
         <div class="booking-logo">
             <img src="Assets/logo.png" alt="NSBM Healthcare">
         </div>
 
-        <!-- Booking Card -->
+        
         <div class="booking-card">
             <div class="booking-card-header">
                 <div class="booking-card-icon">
@@ -184,7 +184,7 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
             </div>
 
             <form id="bookingForm" action="process_quick_booking.php" method="POST">
-                <!-- Personal Information -->
+                
                 <div class="booking-section-label">
                     <span class="booking-section-number">1</span>
                     Your Information
@@ -207,7 +207,6 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
 
                 <div class="booking-divider"></div>
 
-                <!-- Appointment Details -->
                 <div class="booking-section-label">
                     <span class="booking-section-number">2</span>
                     Appointment Details
@@ -231,7 +230,6 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
                     </div>
                 </div>
 
-                <!-- Hidden time field (set by popup) -->
                 <input type="hidden" id="appoint_time" name="appoint_time" value="">
 
                 <button type="submit" class="booking-submit-btn" id="submitBtn">
@@ -244,7 +242,7 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
         </div>
     </div>
 
-    <!-- ===== Time Slot Selection Modal ===== -->
+ 
     <div class="modal-overlay" id="timeModal">
         <div class="modal-panel">
             <div class="modal-header">
