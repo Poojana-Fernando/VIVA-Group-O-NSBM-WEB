@@ -172,8 +172,8 @@
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
             try {
-                // We use relative path or full domain relative. Assuming we are in the same folder structure.
-                const apiUrl = '/VIVA-Group-O-NSBM-WEB/chatbot_api.php';
+                // Remove local directory for AWS deployment
+                const apiUrl = '/chatbot_api.php';
                 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
