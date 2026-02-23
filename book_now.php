@@ -197,11 +197,11 @@ $doctors = $db->doctors->find([], ['projection' => ['did' => 1, 'dname' => 1, 's
                     </div>
                     <div class="booking-field">
                         <label for="pemail">Email Address</label>
-                        <input type="email" id="pemail" name="pemail" placeholder="your@email.com" required>
+                        <input type="email" id="pemail" name="pemail" placeholder="your@email.com"  required>
                     </div>
                     <div class="booking-field">
                         <label for="pcontact">Contact Number</label>
-                        <input type="text" id="pcontact" name="pcontact" placeholder="+94 7X XXX XXXX" required>
+                        <input type="text" id="pcontact" name="pcontact" placeholder="+94 7X XXX XXXX" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
                     </div>
                 </div>
 
