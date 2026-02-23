@@ -16,12 +16,12 @@ $basePath = '../';
 
   <?php include '../navbar.php'; ?>
 
-  <header class="top-banner">
+  <header class="top-banner reveal">
     <img src="../Assets/services/slide3.jpg" alt="Kidney Centre Banner">
   </header>
 
-  <main class="page">
-    <section class="service-box">
+  <main class="page reveal">
+    <section class="service-box reveal">
       <h1>Kidney Care</h1>
       <p>
   Our Kidney Care Clinic supports students and staff with kidney-related consultations,

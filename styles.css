@@ -277,7 +277,7 @@ body{
 
 /* About section styled as a card for visual consistency */
 
-#about.section {
+#about.section, #contact.section {
   background: #ffffff;
   width: 100%;
   border-radius: 22px;
@@ -286,7 +286,6 @@ body{
   padding: 60px 30px;
   margin-bottom: 40px;
 }
-
 
 /* Footer styles moved to .site-footer class below */
 
@@ -750,3 +749,4 @@ html {
   opacity: 1;
   transform: translateY(0);
 }
+

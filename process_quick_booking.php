@@ -7,9 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pcontact = $_POST['pcontact'];
     $did = (int)$_POST['did'];
     $date = $_POST['appoint_date'];
-    $appoint_time = isset($_POST['appoint_time']) ? $_POST['appoint_time'] : '';
 
-    // 1. Patient Handling (Check if exists, or create new)
+    // Patient Handling (Check if exists, or create new)
     $patient = $db->patients->findOne(['email' => $pemail]);
 
     if ($patient) {
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
     }
 
-    // 2. Queue and Time Slot Calculation
+    // Queue and Time Slot Calculation
     // Count how many people booked before this person for the same doctor and date
     $position = $db->appointments->countDocuments([
         'did' => $did,
@@ -39,28 +38,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ['projection' => ['dname' => 1, 'specialisation' => 1, 'start_time' => 1]]
     );
 
-    // Use user-selected time if available, otherwise calculate from position
-    if (!empty($appoint_time)) {
-        $patient_time = $appoint_time;
-    } else {
-        $slot_duration = 20;
-        $minutes_to_add = $position * $slot_duration;
-        $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", strtotime($doc['start_time'])));
-    }
+    // Calculate time: Start Time + (Position * 20 mins)
+    $slot_duration = 20;
+    $minutes_to_add = $position * $slot_duration;
+    $patient_time = date('h:i A', strtotime("+$minutes_to_add minutes", strtotime($doc['start_time'])));
 
-    // 3. Insert the Appointment into the database
+    // Insert the Appointment into the database
     $booking_id = getNextSequence($db, 'appointments');
-    $appointmentDoc = [
+    $result = $db->appointments->insertOne([
         'id' => $booking_id,
         'pid' => $pid,
         'did' => $did,
         'appoint_date' => $date,
         'appoint_status' => 'Pending'
-    ];
-    if (!empty($appoint_time)) {
-        $appointmentDoc['appoint_time'] = $appoint_time;
-    }
-    $result = $db->appointments->insertOne($appointmentDoc);
+    ]);
 
     if ($result->getInsertedCount() > 0) {
         ?>
@@ -69,9 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <head>
             <meta charset="UTF-8">
             <title>Booking Confirmed | E-Channeling</title>
-            <link rel="stylesheet" href="styles.css" />
             <style>
-                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
                 .receipt-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; border-top: 10px solid #007bff; }
                 .success-icon { font-size: 50px; color: #28a745; text-align: center; margin-bottom: 10px; }
                 h2 { text-align: center; color: #333; margin-top: 0; }
