@@ -3,22 +3,40 @@ session_start();
 include 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['demail'];
+    // validate the Email
+    $email = trim($_POST['demail']);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Invalid email format."); // if the email is wrong, stop the process.
+    }
+
     $password = $_POST['dpassword'];
 
-    
-    $stmt = $conn->prepare("SELECT did, dname, password FROM Doctors WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // getting doctor details from the database
+    $doctor = $db->doctors->findOne(['email' => $email]);
 
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
+    if ($doctor) {
+        $storedPassword = $doctor['password'];
+        $passwordMatch = false;
 
+        // First try verification 
+        if (password_verify($password, $storedPassword)) {
+            $passwordMatch = true;
+        }
+        //direct comparison for plaintext passwords (from migration)
+        elseif ($password === $storedPassword) {
+            $passwordMatch = true;
 
-        if ($password === $row['password']) {
-            $_SESSION['doctor_id'] = $row['did'];
-            $_SESSION['doctor_name'] = $row['dname'];
+            // Ahash the plaintext password for future security
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $db->doctors->updateOne(
+                ['email' => $email],
+                ['$set' => ['password' => $hashedPassword]]
+            );
+        }
+
+        if ($passwordMatch) {
+            $_SESSION['doctor_id'] = $doctor['did'];
+            $_SESSION['doctor_name'] = $doctor['dname'];
             header("Location: doctor_dashboard.php");
             exit();
         } else {
@@ -27,6 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Incorrect Email.";
     }
-    $stmt->close();
 }
 ?>
